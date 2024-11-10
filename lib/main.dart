@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'presentation/routes/routes.dart';
 
@@ -11,8 +12,10 @@ class CoordinationApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
+    return ProviderScope(
+      child: MaterialApp.router(
+        routerConfig: router,
+      ),
     );
   }
 }
