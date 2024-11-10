@@ -1,9 +1,10 @@
+import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/presentation/pages/avatar/avatar_page.dart';
 import 'package:coordination_app/presentation/pages/closet/closet.dart';
 import 'package:coordination_app/presentation/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'riverpod/bottom_nav_controller.dart';
 
@@ -13,30 +14,57 @@ class MainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentNav = ref.watch(bottomNavProvider);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("디자이너가 없네"),
-      ),
-      body: _getPage(currentNav),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentNav,
-        onTap: (newIndex) =>
-            ref.read(bottomNavProvider.notifier).changeIndex(newIndex),
-        items: List.generate(
-          BottomNav.values.length,
-          (index) => BottomNavigationBarItem(
-            icon: SvgPicture.asset(BottomNav.values[index].icon,
-                width: 24, height: 24),
-            label: BottomNav.values[index].toName,
+      extendBody: true,
+      body: _buildPage(currentNav),
+      bottomNavigationBar: _buildBottomNavigation(currentNav, ref),
+    );
+  }
+
+  Container _buildBottomNavigation(int currentNav, WidgetRef ref) {
+    return Container(
+      decoration: const BoxDecoration(boxShadow: [
+        BoxShadow(color: Colors.black26, spreadRadius: 0, blurRadius: 10),
+      ]),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30),
+        ),
+        child: SizedBox(
+          height: 80,
+          child: BottomNavigationBar(
+            currentIndex: currentNav,
+            onTap: (newIndex) =>
+                ref.read(bottomNavProvider.notifier).changeIndex(newIndex),
+            items: List.generate(
+              BottomNav.values.length,
+              (index) => BottomNavigationBarItem(
+                icon: SvgPicture.asset(BottomNav.values[index].icon,
+                    width: 24, height: 24),
+                activeIcon: SvgPicture.asset(
+                  BottomNav.values[index].icon,
+                  width: 24,
+                  height: 24,
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.primary,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                label: BottomNav.values[index].toName,
+              ),
+            ),
+            showUnselectedLabels: false,
+            showSelectedLabels: true,
+            fixedColor: AppColors.black,
           ),
         ),
-        showUnselectedLabels: false,
-        showSelectedLabels: true,
       ),
     );
   }
 
-  Widget _getPage(int index) {
+  Widget _buildPage(int index) {
     switch (BottomNav.values[index]) {
       case BottomNav.closet:
         return const ClosetPage();

@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:coordination_app/core/utils/constants.dart';
+import 'package:coordination_app/presentation/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rive/rive.dart' hide LinearGradient;

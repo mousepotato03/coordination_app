@@ -11,4 +11,9 @@ class AppColors {
 
   static const Color positive = Color(0xFF74CD7C);
   static const Color negative = Color(0xFFFF5645);
+
+  static const Color primary = Color(0xffffb85a);
+  static const Color secondary = Color(0xff9b6429);
+
+  static const Color unimportant = Color(0x97918f8f);
 }
