@@ -1,3 +1,5 @@
+import 'package:coordination_app/presentation/pages/profile/widget/note_pad_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -5,6 +7,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child:Text("ProfilePage"));
+    return Center(child: NotePadWidget(),);
   }
 }
+
