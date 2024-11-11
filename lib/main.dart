@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+import 'data/entity/my_size/my_size_info.entity.dart';
 import 'presentation/routes/routes.dart';
 
-void main() {
+void main() async {
+  //Hive
+  await Hive.initFlutter();
+  Hive.registerAdapter(MySizeInfoEntityAdapter());
+
   runApp(const CoordinationApp());
 }
 

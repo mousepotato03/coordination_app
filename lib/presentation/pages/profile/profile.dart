@@ -7,7 +7,14 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: NotePadWidget(),);
+    return Center(
+      child: NotePadWidget(
+        child: PageView.builder(
+          scrollDirection: Axis.vertical,
+          itemBuilder: (_, int index) {},
+        ),
+      ),
+    );
   }
 }
 

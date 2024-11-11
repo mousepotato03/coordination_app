@@ -33,24 +33,35 @@ dependencies:
 
   #ui
   go_router: ^14.4.1
-
   cupertino_icons: ^1.0.6
+  rive: ^0.13.15
+
 
   #state management
   flutter_riverpod: ^2.6.1
   flutter_svg: ^2.0.14
-  rive: ^0.13.15
+
+  #DB
+  hive:
+  hive_flutter: ^1.1.0
+
+  #architecture
+  injectable: ^2.5.0
+  json_annotation:
+  logger:
+  freezed_annotation:
+  get_it: ^8.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  build_runner:
+  hive_generator:
+  injectable_generator: ^2.6.2
+  json_serializable:
+  freezed:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

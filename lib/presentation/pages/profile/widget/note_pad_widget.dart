@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class NotePadWidget extends StatelessWidget {
-  const NotePadWidget({super.key});
+  final Widget? child;
+
+  const NotePadWidget({super.key, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,7 @@ class NotePadWidget extends StatelessWidget {
       children: [
         Container(
           width: 350,
-          height: 400,
+          height: 550,
           decoration: BoxDecoration(
             color: Colors.amber.shade100,
             borderRadius: BorderRadius.circular(8),
@@ -25,7 +27,7 @@ class NotePadWidget extends StatelessWidget {
             painter: LinedPaperPainter(),
             child: Container(
               padding: const EdgeInsets.only(top: 46,left:16 ,right:16 ,bottom:16),
-              child: const Text('메모 내용 입력하기'),
+              child: child,
             ),
           ),
         ),
