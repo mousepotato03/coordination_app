@@ -8,18 +8,18 @@ part of 'my_size_info.model.dart';
 
 _$MySizeInfoImpl _$$MySizeInfoImplFromJson(Map<String, dynamic> json) =>
     _$MySizeInfoImpl(
-      name: json['name'] as String,
-      age: (json['age'] as num).toInt(),
-      sex: json['sex'] as String,
-      height: (json['height'] as num).toDouble(),
-      weight: (json['weight'] as num).toDouble(),
-      upperBodyHeight: (json['upperBodyHeight'] as num).toDouble(),
-      shoulderWidth: (json['shoulderWidth'] as num).toDouble(),
-      chestHeight: (json['chestHeight'] as num).toDouble(),
-      lowerBodyHeight: (json['lowerBodyHeight'] as num).toDouble(),
-      waistWidth: (json['waistWidth'] as num).toDouble(),
-      hipWidth: (json['hipWidth'] as num).toDouble(),
-      shoesSize: (json['shoesSize'] as num).toInt(),
+      name: json['name'] as String? ?? '',
+      age: (json['age'] as num?)?.toInt() ?? 0,
+      sex: json['sex'] as String? ?? '',
+      height: (json['height'] as num?)?.toDouble() ?? 0.0,
+      weight: (json['weight'] as num?)?.toDouble() ?? 0.0,
+      upperBodyHeight: (json['upperBodyHeight'] as num?)?.toDouble() ?? 0.0,
+      shoulderWidth: (json['shoulderWidth'] as num?)?.toDouble() ?? 0.0,
+      chestHeight: (json['chestHeight'] as num?)?.toDouble() ?? 0.0,
+      lowerBodyHeight: (json['lowerBodyHeight'] as num?)?.toDouble() ?? 0.0,
+      waistWidth: (json['waistWidth'] as num?)?.toDouble() ?? 0.0,
+      hipWidth: (json['hipWidth'] as num?)?.toDouble() ?? 0.0,
+      shoesSize: (json['shoesSize'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$MySizeInfoImplToJson(_$MySizeInfoImpl instance) =>

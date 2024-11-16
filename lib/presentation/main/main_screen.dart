@@ -1,7 +1,7 @@
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/presentation/pages/avatar/avatar_page.dart';
-import 'package:coordination_app/presentation/pages/closet/closet.dart';
-import 'package:coordination_app/presentation/pages/profile/profile.dart';
+import 'package:coordination_app/presentation/pages/closet/closet_page.dart';
+import 'package:coordination_app/presentation/pages/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';

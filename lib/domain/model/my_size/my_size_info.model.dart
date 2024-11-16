@@ -8,24 +8,24 @@ part 'my_size_info.model.g.dart';
 class MySizeInfo with _$MySizeInfo {
   const factory MySizeInfo({
     //기본 정보
-    required String name,
-    required int age,
-    required String sex,
-    required double height,
-    required double weight,
+    @Default('') String name,
+    @Default(0) int age,
+    @Default('') String sex,
+    @Default(0.0) double height,
+    @Default(0.0) double weight,
 
     //상의
-    required double upperBodyHeight,
-    required double shoulderWidth,
-    required double chestHeight,
+    @Default(0.0) double upperBodyHeight,
+    @Default(0.0) double shoulderWidth,
+    @Default(0.0) double chestHeight,
 
     //하의
-    required double lowerBodyHeight,
-    required double waistWidth,
-    required double hipWidth,
+    @Default(0.0) double lowerBodyHeight,
+    @Default(0.0) double waistWidth,
+    @Default(0.0) double hipWidth,
 
     //신발
-    required int shoesSize,
+    @Default(0) int shoesSize,
   }) = _MySizeInfo;
 
   factory MySizeInfo.fromJson(Map<String, dynamic> json) =>

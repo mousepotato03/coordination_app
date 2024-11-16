@@ -244,49 +244,61 @@ class __$$MySizeInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
   const _$MySizeInfoImpl(
-      {required this.name,
-      required this.age,
-      required this.sex,
-      required this.height,
-      required this.weight,
-      required this.upperBodyHeight,
-      required this.shoulderWidth,
-      required this.chestHeight,
-      required this.lowerBodyHeight,
-      required this.waistWidth,
-      required this.hipWidth,
-      required this.shoesSize});
+      {this.name = '',
+      this.age = 0,
+      this.sex = '',
+      this.height = 0.0,
+      this.weight = 0.0,
+      this.upperBodyHeight = 0.0,
+      this.shoulderWidth = 0.0,
+      this.chestHeight = 0.0,
+      this.lowerBodyHeight = 0.0,
+      this.waistWidth = 0.0,
+      this.hipWidth = 0.0,
+      this.shoesSize = 0});
 
   factory _$MySizeInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$MySizeInfoImplFromJson(json);
 
 //기본 정보
   @override
+  @JsonKey()
   final String name;
   @override
+  @JsonKey()
   final int age;
   @override
+  @JsonKey()
   final String sex;
   @override
+  @JsonKey()
   final double height;
   @override
+  @JsonKey()
   final double weight;
 //상의
   @override
+  @JsonKey()
   final double upperBodyHeight;
   @override
+  @JsonKey()
   final double shoulderWidth;
   @override
+  @JsonKey()
   final double chestHeight;
 //하의
   @override
+  @JsonKey()
   final double lowerBodyHeight;
   @override
+  @JsonKey()
   final double waistWidth;
   @override
+  @JsonKey()
   final double hipWidth;
 //신발
   @override
+  @JsonKey()
   final int shoesSize;
 
   @override
@@ -372,18 +384,18 @@ class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
 
 abstract class _MySizeInfo implements MySizeInfo {
   const factory _MySizeInfo(
-      {required final String name,
-      required final int age,
-      required final String sex,
-      required final double height,
-      required final double weight,
-      required final double upperBodyHeight,
-      required final double shoulderWidth,
-      required final double chestHeight,
-      required final double lowerBodyHeight,
-      required final double waistWidth,
-      required final double hipWidth,
-      required final int shoesSize}) = _$MySizeInfoImpl;
+      {final String name,
+      final int age,
+      final String sex,
+      final double height,
+      final double weight,
+      final double upperBodyHeight,
+      final double shoulderWidth,
+      final double chestHeight,
+      final double lowerBodyHeight,
+      final double waistWidth,
+      final double hipWidth,
+      final int shoesSize}) = _$MySizeInfoImpl;
 
   factory _MySizeInfo.fromJson(Map<String, dynamic> json) =
       _$MySizeInfoImpl.fromJson;

@@ -37,17 +37,17 @@ class MySizeInfoEntity extends HiveObject {
   int shoesSize;
 
   MySizeInfoEntity({
-    required this.name,
-    required this.age,
-    required this.sex,
-    required this.height,
-    required this.weight,
-    required this.upperBodyHeight,
-    required this.shoulderWidth,
-    required this.chestHeight,
-    required this.lowerBodyHeight,
-    required this.waistWidth,
-    required this.hipWidth,
-    required this.shoesSize,
+    this.name = '',
+    this.age = 1,
+    this.sex = '',
+    this.height = 0.0,
+    this.weight = 0.0,
+    this.upperBodyHeight = 0.0,
+    this.shoulderWidth = 0.0,
+    this.chestHeight = 0.0,
+    this.lowerBodyHeight = 0.0,
+    this.waistWidth = 0.0,
+    this.hipWidth = 0.0,
+    this.shoesSize = 0,
   });
 }
