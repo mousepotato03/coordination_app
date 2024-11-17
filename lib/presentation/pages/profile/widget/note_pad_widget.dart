@@ -21,21 +21,17 @@ class _NotePadWidgetState extends State<NotePadWidget> {
     return GestureDetector(
       onVerticalDragEnd: (details) {
         if (details.primaryVelocity! < 0 && currentIndex < widget.children.length - 1) {
+          FocusScope.of(context).unfocus();
           setState(() => currentIndex++);
         } else if (details.primaryVelocity! > 0 && currentIndex > 0) {
+          FocusScope.of(context).unfocus();
           setState(() => currentIndex--);
         }
       },
       child: Stack(
         alignment: Alignment.center,
         children: [
-          ...List.generate(widget.children.length, (index) {
-            return AnimatedOpacity(
-              opacity: currentIndex == index ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 300),
-              child: NotePaper(child: widget.children[index]),
-            );
-          }).reversed,
+          NotePaper(child: widget.children[currentIndex]),
           Positioned(
             top: 0,
             left: 0,
