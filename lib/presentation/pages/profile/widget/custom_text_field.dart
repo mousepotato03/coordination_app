@@ -5,13 +5,14 @@ class CustomTextField extends StatelessWidget {
   final String? value;
   final String? unit;
   final ValueChanged<String>? onChanged;
-
+  final bool isEditMode;
   const CustomTextField({
     super.key,
     required this.label,
     this.value,
     this.unit,
     this.onChanged,
+    this.isEditMode = false,
   });
 
   @override
@@ -27,17 +28,30 @@ class CustomTextField extends StatelessWidget {
           child: TextField(
             controller: TextEditingController(text: value),
             onChanged: onChanged,
+            enabled: isEditMode,
+            style: TextStyle(
+              color: isEditMode ? Colors.black : Colors.grey[600],
+              fontSize: 16,
+            ),
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               border: const UnderlineInputBorder(),
-              enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.black),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: isEditMode ? Colors.black : Colors.grey[400]!,
+                ),
+              ),
+              disabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey[400]!),
               ),
               suffixText: unit,
+              suffixStyle: TextStyle(
+                color: isEditMode ? Colors.black : Colors.grey[600],
+              ),
             ),
           ),
         ),
       ],
     );
   }
-} 
+}

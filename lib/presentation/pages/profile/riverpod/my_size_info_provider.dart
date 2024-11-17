@@ -67,4 +67,8 @@ class MySizeInfoNotifier extends StateNotifier<MySizeInfoState> {
       );
     }
   }
+
+  void toggleEditMode() {
+    state = state.copyWith(isEditMode: !state.isEditMode);
+  }
 }

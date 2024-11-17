@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'pages/profile_pages.dart';
+import 'riverpod/my_size_info_provider.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -14,15 +15,15 @@ class ProfilePage extends ConsumerStatefulWidget {
 }
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
-  bool isEditMode = false;
-
   @override
   Widget build(BuildContext context) {
+    final isEditMode = ref.watch(mySizeInfoProvider).isEditMode;
+
     return ProviderScope(
         child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
           const NotePadWidget(
             children: [
               BaseInfoPage(),
@@ -37,9 +38,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               backgroundColor: AppColors.primary,
             ),
             onPressed: () {
-              setState(() {
-                isEditMode = !isEditMode;
-              });
+              ref.read(mySizeInfoProvider.notifier).toggleEditMode();
             },
             child: SizedBox(
               width: 100,
@@ -51,8 +50,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ),
             ),
           ),
-            ],
-          ),
-        ));
+        ],
+      ),
+    ));
   }
 }

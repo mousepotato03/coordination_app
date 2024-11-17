@@ -11,6 +11,7 @@ class ShoesInfoPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mySize = ref.watch(mySizeInfoProvider).mySizeInfo;
     final isEditMode = ref.watch(mySizeInfoProvider).isEditMode;
+
     return Column(
       children: [
         CustomTextField(

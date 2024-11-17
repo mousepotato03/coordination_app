@@ -12,5 +12,6 @@ class MySizeInfoState with _$MySizeInfoState {
     @Default(Status.initial) Status status,
     @Default(MySizeInfo()) MySizeInfo mySizeInfo,
     @Default(ErrorResponse()) ErrorResponse error,
+    @Default(false) bool isEditMode,
   }) = _MySizeInfoState;
 }

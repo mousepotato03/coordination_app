@@ -19,6 +19,7 @@ mixin _$MySizeInfoState {
   Status get status => throw _privateConstructorUsedError;
   MySizeInfo get mySizeInfo => throw _privateConstructorUsedError;
   ErrorResponse get error => throw _privateConstructorUsedError;
+  bool get isEditMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MySizeInfoStateCopyWith<MySizeInfoState> get copyWith =>
@@ -31,7 +32,11 @@ abstract class $MySizeInfoStateCopyWith<$Res> {
           MySizeInfoState value, $Res Function(MySizeInfoState) then) =
       _$MySizeInfoStateCopyWithImpl<$Res, MySizeInfoState>;
   @useResult
-  $Res call({Status status, MySizeInfo mySizeInfo, ErrorResponse error});
+  $Res call(
+      {Status status,
+      MySizeInfo mySizeInfo,
+      ErrorResponse error,
+      bool isEditMode});
 
   $MySizeInfoCopyWith<$Res> get mySizeInfo;
 }
@@ -52,6 +57,7 @@ class _$MySizeInfoStateCopyWithImpl<$Res, $Val extends MySizeInfoState>
     Object? status = null,
     Object? mySizeInfo = null,
     Object? error = null,
+    Object? isEditMode = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -66,6 +72,10 @@ class _$MySizeInfoStateCopyWithImpl<$Res, $Val extends MySizeInfoState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorResponse,
+      isEditMode: null == isEditMode
+          ? _value.isEditMode
+          : isEditMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -86,7 +96,11 @@ abstract class _$$MySizeInfoStateImplCopyWith<$Res>
       __$$MySizeInfoStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, MySizeInfo mySizeInfo, ErrorResponse error});
+  $Res call(
+      {Status status,
+      MySizeInfo mySizeInfo,
+      ErrorResponse error,
+      bool isEditMode});
 
   @override
   $MySizeInfoCopyWith<$Res> get mySizeInfo;
@@ -106,6 +120,7 @@ class __$$MySizeInfoStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? mySizeInfo = null,
     Object? error = null,
+    Object? isEditMode = null,
   }) {
     return _then(_$MySizeInfoStateImpl(
       status: null == status
@@ -120,6 +135,10 @@ class __$$MySizeInfoStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ErrorResponse,
+      isEditMode: null == isEditMode
+          ? _value.isEditMode
+          : isEditMode // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -130,7 +149,8 @@ class _$MySizeInfoStateImpl implements _MySizeInfoState {
   _$MySizeInfoStateImpl(
       {this.status = Status.initial,
       this.mySizeInfo = const MySizeInfo(),
-      this.error = const ErrorResponse()});
+      this.error = const ErrorResponse(),
+      this.isEditMode = false});
 
   @override
   @JsonKey()
@@ -141,10 +161,13 @@ class _$MySizeInfoStateImpl implements _MySizeInfoState {
   @override
   @JsonKey()
   final ErrorResponse error;
+  @override
+  @JsonKey()
+  final bool isEditMode;
 
   @override
   String toString() {
-    return 'MySizeInfoState(status: $status, mySizeInfo: $mySizeInfo, error: $error)';
+    return 'MySizeInfoState(status: $status, mySizeInfo: $mySizeInfo, error: $error, isEditMode: $isEditMode)';
   }
 
   @override
@@ -155,11 +178,14 @@ class _$MySizeInfoStateImpl implements _MySizeInfoState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.mySizeInfo, mySizeInfo) ||
                 other.mySizeInfo == mySizeInfo) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.isEditMode, isEditMode) ||
+                other.isEditMode == isEditMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, mySizeInfo, error);
+  int get hashCode =>
+      Object.hash(runtimeType, status, mySizeInfo, error, isEditMode);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +199,8 @@ abstract class _MySizeInfoState implements MySizeInfoState {
   factory _MySizeInfoState(
       {final Status status,
       final MySizeInfo mySizeInfo,
-      final ErrorResponse error}) = _$MySizeInfoStateImpl;
+      final ErrorResponse error,
+      final bool isEditMode}) = _$MySizeInfoStateImpl;
 
   @override
   Status get status;
@@ -181,6 +208,8 @@ abstract class _MySizeInfoState implements MySizeInfoState {
   MySizeInfo get mySizeInfo;
   @override
   ErrorResponse get error;
+  @override
+  bool get isEditMode;
   @override
   @JsonKey(ignore: true)
   _$$MySizeInfoStateImplCopyWith<_$MySizeInfoStateImpl> get copyWith =>
