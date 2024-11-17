@@ -16,6 +16,7 @@ class ShoesInfoPage extends ConsumerWidget {
       children: [
         CustomTextField(
           label: '신발 사이즈 :',
+          field: 'shoesSize',
           value: mySize.shoesSize.toString(),
           unit: "mm",
           isEditMode: isEditMode,

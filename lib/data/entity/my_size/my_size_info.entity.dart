@@ -50,4 +50,22 @@ class MySizeInfoEntity extends HiveObject {
     this.hipWidth = 0.0,
     this.shoesSize = 0,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'age': age,
+      'sex': sex,
+      'height': height,
+      'weight': weight,
+      'upperBodyHeight': upperBodyHeight,
+      'shoulderWidth': shoulderWidth,
+      'chestHeight': chestHeight,
+      'lowerBodyHeight': lowerBodyHeight,
+      'waistWidth': waistWidth,
+      'hipWidth': hipWidth,
+      'shoesSize': shoesSize,
+    };
+  }
 }
+

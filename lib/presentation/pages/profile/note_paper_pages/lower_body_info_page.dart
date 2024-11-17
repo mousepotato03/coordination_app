@@ -16,18 +16,21 @@ class LowerBodyInfoPage extends ConsumerWidget {
       children: [
         CustomTextField(
           label: '총장 :',
+          field: 'lowerBodyHeight',
           value: mySize.lowerBodyHeight.toString(),
           unit: 'cm',
           isEditMode: isEditMode,
         ),
         CustomTextField(
           label: '허리단면 :',
+          field: 'waistWidth',
           value: mySize.waistWidth.toString(),
           unit: 'cm',
           isEditMode: isEditMode,
         ),
         CustomTextField(
           label: '엉덩이단면 :',
+          field: 'hipWidth',
           value: mySize.hipWidth.toString(),
           unit: 'cm',
           isEditMode: isEditMode,

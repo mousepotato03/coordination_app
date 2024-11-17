@@ -9,7 +9,7 @@ class MySizeInfoUsecase {
 
   MySizeInfoUsecase(this._mySizeInfoRepository);
 
-  Future<T> excute<T> ({required Usecase usecase})async{
+  Future<T> execute<T>({required Usecase usecase}) async {
     return await usecase(_mySizeInfoRepository);
   }
 }

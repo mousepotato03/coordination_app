@@ -16,18 +16,21 @@ class UpperBodyInfoPage extends ConsumerWidget {
       children: [
         CustomTextField(
           label: "총장 :",
-          value: mySize.chestHeight.toString(),
+          field: 'upperBodyHeight',
+          value: mySize.upperBodyHeight.toString(),
           unit: "cm",
           isEditMode: isEditMode,
         ),
         CustomTextField(
           label: "어깨너비 :",
+          field: 'shoulderWidth',
           value: mySize.shoulderWidth.toString(),
           unit: "cm",
           isEditMode: isEditMode,
         ),
         CustomTextField(
           label: "가슴높이 :",
+          field: 'chestHeight',
           value: mySize.chestHeight.toString(),
           unit: "cm",
           isEditMode: isEditMode,
