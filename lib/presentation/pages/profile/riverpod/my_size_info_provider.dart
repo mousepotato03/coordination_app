@@ -4,13 +4,11 @@ import 'package:coordination_app/domain/usecase/my_size/my_size_info.usecase.dar
 import 'package:coordination_app/domain/usecase/my_size/save_my_size_info.usecase.dart';
 import 'package:coordination_app/presentation/pages/profile/riverpod/my_size_info_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/constants.dart';
 import '../../../../core/utils/exception/common_exception.dart';
 import '../../../../core/utils/logger.dart';
-import '../../../../data/entity/my_size/my_size_info.entity.dart';
 import '../../../../dependency_injection.dart';
 
 final currentPageProvider = StateProvider<int>((ref) => 0);
@@ -61,13 +59,6 @@ class MySizeInfoNotifier extends StateNotifier<MySizeInfoState> {
           state = state.copyWith(status: Status.error, error: error);
         },
       );
-      final box = await Hive.openBox<MySizeInfoEntity>("MySizeDB");
-      // 저장된 데이터 확인
-      final savedData = box.get(0);
-      print('저장된 데이터: ${savedData?.toJson()}');
-      // DB 닫기
-      await box.close();
-      
     } catch (e) {
       CustomLogger.logger.e(e);
       state = state.copyWith(
