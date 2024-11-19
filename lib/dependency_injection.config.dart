@@ -10,6 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:coordination_app/data/data_source/data_source_module.dart'
     as _i128;
+import 'package:coordination_app/data/data_source/local/closet.dao.dart'
+    as _i476;
 import 'package:coordination_app/data/data_source/local/my_size_info.dao.dart'
     as _i899;
 import 'package:coordination_app/data/repository_impl/my_size_info.repository.impl.dart'
@@ -36,6 +38,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dataSourceModule = _$DataSourceModule();
     gh.singleton<_i899.MySizeDao>(() => dataSourceModule.mySizeDao);
+    gh.singleton<_i476.MyClosetDao>(() => dataSourceModule.myClosetDao);
     gh.singleton<_i27.MySizeInfoRepository>(
         () => _i149.MySizeInfoRepositoryImpl(gh<_i899.MySizeDao>()));
     gh.singleton<_i266.MySizeInfoUsecase>(
