@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import 'local/closet.dao.dart';
+import 'local/my_closet.dao.dart';
 import 'local/my_size_info.dao.dart';
 
 @module

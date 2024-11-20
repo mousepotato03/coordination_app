@@ -1,13 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../entity/closet/my_closet.entity.dart';
+import '../../entity/my_clothes/my_clothes.entity.dart';
 import '../../response_wrapper/response_wrapper.dart';
 
 const String _myClosetDb = "MyClosetDB";
 
 class MyClosetDao {
-  Future<ResponseWrapper<List<MyClosetEntity>>> getMyCloset() async {
-    final localDB = await Hive.openBox<MyClosetEntity>(_myClosetDb);
+  Future<ResponseWrapper<List<MyClothesEntity>>> getMyCloset() async {
+    final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);
     return ResponseWrapper(
       status: "SUCCESS",
       code: "0000",
@@ -16,9 +16,9 @@ class MyClosetDao {
     );
   }
 
-  Future<ResponseWrapper<List<MyClosetEntity>>> addMyClothes(
-      MyClosetEntity clothes) async {
-    final localDB = await Hive.openBox<MyClosetEntity>(_myClosetDb);
+  Future<ResponseWrapper<List<MyClothesEntity>>> addMyClothes(
+      MyClothesEntity clothes) async {
+    final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);
     await localDB.put(clothes.id, clothes);
     return ResponseWrapper(
       status: "SUCCESS",
@@ -28,11 +28,11 @@ class MyClosetDao {
     );
   }
 
-  Future<ResponseWrapper<List<MyClosetEntity>>> deleteMyClothes(
-      String id) async {
-    final localDB = await Hive.openBox<MyClosetEntity>(_myClosetDb);
+  Future<ResponseWrapper<List<MyClothesEntity>>> deleteMyClothes(
+      List<String> ids) async {
+    final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);
     // 존재하지 않는 옷일 경우 예외처리
-    if (!localDB.containsKey(id)) {
+    if (!localDB.containsKey(ids)) {
       return const ResponseWrapper(
         status: "FAIL",
         code: "4004",
@@ -40,7 +40,7 @@ class MyClosetDao {
       );
     }
 
-    await localDB.delete(id);
+    await localDB.deleteAll(ids);
 
     return ResponseWrapper(
       status: "SUCCESS",
@@ -50,11 +50,11 @@ class MyClosetDao {
     );
   }
 
-  Future<ResponseWrapper<void>> modifyMyClothes(
-      MyClosetEntity clothes) async {
-    final localDB = await Hive.openBox<MyClosetEntity>(_myClosetDb);
+  Future<ResponseWrapper<List<MyClothesEntity>>> modifyMyClothes(
+      String id, MyClothesEntity clothes) async {
+    final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);
     // 존재하지 않는 옷일 경우 예외처리
-    if (!localDB.containsKey(clothes.id)) {
+    if (!localDB.containsKey(id)) {
       return const ResponseWrapper(
         status: "FAIL",
         code: "4004",
@@ -62,12 +62,13 @@ class MyClosetDao {
       );
     }
 
-    await localDB.put(clothes.id, clothes);
+    await localDB.put(id, clothes);
 
-    return const ResponseWrapper(
+    return ResponseWrapper(
       status: "SUCCESS",
       code: "0000",
       message: "내 옷장 수정 완료",
+      data: localDB.values.toList(),
     );
   }
 }

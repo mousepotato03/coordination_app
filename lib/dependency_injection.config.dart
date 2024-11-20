@@ -10,14 +10,20 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:coordination_app/data/data_source/data_source_module.dart'
     as _i128;
-import 'package:coordination_app/data/data_source/local/closet.dao.dart'
-    as _i476;
+import 'package:coordination_app/data/data_source/local/my_closet.dao.dart'
+    as _i1010;
 import 'package:coordination_app/data/data_source/local/my_size_info.dao.dart'
     as _i899;
+import 'package:coordination_app/data/repository_impl/my_closet.repository.impl.dart'
+    as _i862;
 import 'package:coordination_app/data/repository_impl/my_size_info.repository.impl.dart'
     as _i149;
+import 'package:coordination_app/domain/repository/my_closet.repository.dart'
+    as _i490;
 import 'package:coordination_app/domain/repository/my_size_info.repository.dart'
     as _i27;
+import 'package:coordination_app/domain/usecase/my_closet/my_closet.usecase.dart'
+    as _i314;
 import 'package:coordination_app/domain/usecase/my_size/my_size_info.usecase.dart'
     as _i266;
 import 'package:coordination_app/presentation/pages/profile/riverpod/my_size_info_provider.dart'
@@ -38,11 +44,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dataSourceModule = _$DataSourceModule();
     gh.singleton<_i899.MySizeDao>(() => dataSourceModule.mySizeDao);
-    gh.singleton<_i476.MyClosetDao>(() => dataSourceModule.myClosetDao);
+    gh.singleton<_i1010.MyClosetDao>(() => dataSourceModule.myClosetDao);
     gh.singleton<_i27.MySizeInfoRepository>(
         () => _i149.MySizeInfoRepositoryImpl(gh<_i899.MySizeDao>()));
+    gh.factory<_i490.MyClosetRepository>(
+        () => _i862.MyClosetRepositoryImpl(gh<_i1010.MyClosetDao>()));
     gh.singleton<_i266.MySizeInfoUsecase>(
         () => _i266.MySizeInfoUsecase(gh<_i27.MySizeInfoRepository>()));
+    gh.singleton<_i314.MyClosetUsecase>(
+        () => _i314.MyClosetUsecase(gh<_i490.MyClosetRepository>()));
     gh.factory<_i952.MySizeInfoNotifier>(
         () => _i952.MySizeInfoNotifier(gh<_i266.MySizeInfoUsecase>()));
     return this;
