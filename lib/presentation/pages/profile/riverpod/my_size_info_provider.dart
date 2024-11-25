@@ -21,7 +21,7 @@ final mySizeInfoProvider =
 class MySizeInfoNotifier extends StateNotifier<MySizeInfoState> {
   final MySizeInfoUsecase _mySizeInfoUsecase;
 
-  MySizeInfoNotifier(this._mySizeInfoUsecase) : super(MySizeInfoState());
+  MySizeInfoNotifier(this._mySizeInfoUsecase) : super(const MySizeInfoState());
 
   Future<void> getMySizeInfo() async {
     state = state.copyWith(status: Status.loading);

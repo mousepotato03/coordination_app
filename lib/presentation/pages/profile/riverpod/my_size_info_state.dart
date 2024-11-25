@@ -8,7 +8,7 @@ part 'my_size_info_state.freezed.dart';
 
 @freezed
 class MySizeInfoState with _$MySizeInfoState {
-  factory MySizeInfoState({
+  const factory MySizeInfoState({
     @Default(Status.initial) Status status,
     @Default(MySizeInfo()) MySizeInfo mySizeInfo,
     @Default(ErrorResponse()) ErrorResponse error,

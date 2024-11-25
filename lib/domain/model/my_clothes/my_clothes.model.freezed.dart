@@ -23,7 +23,7 @@ mixin _$MyClothes {
   String get id => throw _privateConstructorUsedError;
   String get imagePath => throw _privateConstructorUsedError;
   ClosetCategory get category => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
   String get memo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $MyClothesCopyWith<$Res> {
       {String id,
       String imagePath,
       ClosetCategory category,
-      DateTime createdAt,
+      String createdAt,
       String memo});
 }
 
@@ -80,7 +80,7 @@ class _$MyClothesCopyWithImpl<$Res, $Val extends MyClothes>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -101,7 +101,7 @@ abstract class _$$MyClothesImplCopyWith<$Res>
       {String id,
       String imagePath,
       ClosetCategory category,
-      DateTime createdAt,
+      String createdAt,
       String memo});
 }
 
@@ -138,7 +138,7 @@ class __$$MyClothesImplCopyWithImpl<$Res>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ class _$MyClothesImpl with DiagnosticableTreeMixin implements _MyClothes {
   @override
   final ClosetCategory category;
   @override
-  final DateTime createdAt;
+  final String createdAt;
   @override
   @JsonKey()
   final String memo;
@@ -228,7 +228,7 @@ abstract class _MyClothes implements MyClothes {
       {required final String id,
       required final String imagePath,
       required final ClosetCategory category,
-      required final DateTime createdAt,
+      required final String createdAt,
       final String memo}) = _$MyClothesImpl;
 
   factory _MyClothes.fromJson(Map<String, dynamic> json) =
@@ -241,7 +241,7 @@ abstract class _MyClothes implements MyClothes {
   @override
   ClosetCategory get category;
   @override
-  DateTime get createdAt;
+  String get createdAt;
   @override
   String get memo;
   @override

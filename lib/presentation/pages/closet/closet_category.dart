@@ -1,5 +1,4 @@
 enum ClosetCategory {
-  all('전체'),
   top('상의'),
   bottom('하의'),
   outer('아우터'),

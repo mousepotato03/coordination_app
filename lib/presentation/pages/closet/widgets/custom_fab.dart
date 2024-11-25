@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../../core/theme/constant/app_colors.dart';
 
 class CustomFAB extends StatefulWidget {
@@ -8,7 +10,7 @@ class CustomFAB extends StatefulWidget {
   State<CustomFAB> createState() => _CustomFABState();
 }
 
-  class _CustomFABState extends State<CustomFAB> {
+class _CustomFABState extends State<CustomFAB> {
   bool isExpanded = false;
 
   @override
@@ -19,7 +21,8 @@ class CustomFAB extends StatefulWidget {
           ignoring: !isExpanded,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            color: isExpanded ? Colors.black.withOpacity(0.6) : Colors.transparent,
+            color:
+                isExpanded ? Colors.black.withOpacity(0.6) : Colors.transparent,
           ),
         ),
         Positioned(
@@ -51,8 +54,13 @@ class CustomFAB extends StatefulWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            // TODO: 갤러리 기능 구현
+                          onTap: () async {
+                            final file = await ImagePicker()
+                                .pickImage(source: ImageSource.gallery);
+                            if (file != null && context.mounted) {
+                              context.push('/clothes-detail', extra: file.path);
+                            }
+                            setState(() => isExpanded = false);
                           },
                           child: const Row(
                             children: [
@@ -69,14 +77,19 @@ class CustomFAB extends StatefulWidget {
                         ),
                         const SizedBox(height: 10),
                         GestureDetector(
-                          onTap: () {
-                            // TODO: 카메라 기능 구현
+                          onTap: () async {
+                            final file = await ImagePicker()
+                                .pickImage(source: ImageSource.camera);
+                            if (file != null && context.mounted) {
+                              context.push('/clothes-detail', extra: file.path);
+                            }
+                            setState(() => isExpanded = false);
                           },
                           child: const Row(
                             children: [
                               Icon(Icons.camera_alt, size: 24),
                               SizedBox(width: 8),
-                              Text('사진'),
+                              Text('카메라'),
                             ],
                           ),
                         ),
@@ -86,25 +99,18 @@ class CustomFAB extends StatefulWidget {
                 ),
                 GestureDetector(
                   onTap: () => setState(() => isExpanded = !isExpanded),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
+                  child: Container(
                     height: 56,
                     padding: const EdgeInsets.symmetric(horizontal: 18),
-                    margin: const EdgeInsets.only(right: 15),
                     decoration: BoxDecoration(
                       color: AppColors.primary,
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: AppColors.black, width: 1.5),
+                      border: Border.all(color: AppColors.black, width: 2),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        AnimatedRotation(
-                          turns: isExpanded ? 0.125 : 0,
-                          duration: const Duration(milliseconds: 300),
-                          child: const Icon(Icons.add),
-                        ),
-                      ],
+                    child: AnimatedRotation(
+                      turns: isExpanded ? 0.125 : 0,
+                      duration: const Duration(milliseconds: 200),
+                      child: const Icon(Icons.add),
                     ),
                   ),
                 ),
@@ -115,4 +121,4 @@ class CustomFAB extends StatefulWidget {
       ],
     );
   }
-} 
+}

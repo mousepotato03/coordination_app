@@ -146,7 +146,7 @@ class __$$MySizeInfoStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MySizeInfoStateImpl implements _MySizeInfoState {
-  _$MySizeInfoStateImpl(
+  const _$MySizeInfoStateImpl(
       {this.status = Status.initial,
       this.mySizeInfo = const MySizeInfo(),
       this.error = const ErrorResponse(),
@@ -196,7 +196,7 @@ class _$MySizeInfoStateImpl implements _MySizeInfoState {
 }
 
 abstract class _MySizeInfoState implements MySizeInfoState {
-  factory _MySizeInfoState(
+  const factory _MySizeInfoState(
       {final Status status,
       final MySizeInfo mySizeInfo,
       final ErrorResponse error,

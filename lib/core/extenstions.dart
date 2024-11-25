@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import 'constants.dart';
 
 extension StatusEx on Status {
@@ -12,3 +14,6 @@ extension StringEx on String {
   bool get isError => this == "ERROR";
 }
 
+extension DateTimeEx on DateTime {
+  String get formattedDate => DateFormat('yyyy-MM-dd').format(this);
+}

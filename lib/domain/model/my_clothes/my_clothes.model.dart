@@ -11,7 +11,7 @@ class MyClothes with _$MyClothes {
     required String id,
     required String imagePath,
     required ClosetCategory category,
-    required DateTime createdAt,
+    required String createdAt,
     @Default('') String memo,
   }) = _MyClothes;
 

@@ -1,4 +1,5 @@
 import '../../domain/model/my_clothes/my_clothes.model.dart';
+import '../../presentation/pages/closet/closet_category.dart';
 import '../entity/my_clothes/my_clothes.entity.dart';
 
 //model => entity
@@ -7,7 +8,7 @@ extension MyClothesEx on MyClothes {
     return MyClothesEntity(
       id: id,
       imagePath: imagePath,
-      category: category,
+      category: category.name,
       createdAt: createdAt,
       memo: memo,
     );
@@ -20,7 +21,7 @@ extension MyClothesEntityEX on MyClothesEntity {
     return MyClothes(
       id: id,
       imagePath: imagePath,
-      category: category,
+      category: ClosetCategory.values.firstWhere((e) => e.name == category),
       createdAt: createdAt,
       memo: memo,
     );

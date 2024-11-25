@@ -11,7 +11,7 @@ _$MyClothesImpl _$$MyClothesImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       imagePath: json['imagePath'] as String,
       category: $enumDecode(_$ClosetCategoryEnumMap, json['category']),
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: json['createdAt'] as String,
       memo: json['memo'] as String? ?? '',
     );
 
@@ -20,12 +20,11 @@ Map<String, dynamic> _$$MyClothesImplToJson(_$MyClothesImpl instance) =>
       'id': instance.id,
       'imagePath': instance.imagePath,
       'category': _$ClosetCategoryEnumMap[instance.category]!,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': instance.createdAt,
       'memo': instance.memo,
     };
 
 const _$ClosetCategoryEnumMap = {
-  ClosetCategory.all: 'all',
   ClosetCategory.top: 'top',
   ClosetCategory.bottom: 'bottom',
   ClosetCategory.outer: 'outer',

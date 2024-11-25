@@ -19,8 +19,8 @@ class MyClothesEntityAdapter extends TypeAdapter<MyClothesEntity> {
     return MyClothesEntity(
       id: fields[0] as String,
       imagePath: fields[1] as String,
-      category: fields[2] as ClosetCategory,
-      createdAt: fields[3] as DateTime,
+      category: fields[2] as String,
+      createdAt: fields[3] as String,
       memo: fields[4] == null ? '' : fields[4] as String,
     );
   }

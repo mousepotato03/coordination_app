@@ -1,14 +1,34 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/constants.dart';
 import '../../../core/theme/constant/app_colors.dart';
-import 'widgets/custom_fab.dart';
 import 'closet_category.dart';
+import 'riverpod/closet_provider.dart';
+import 'widgets/custom_fab.dart';
 
-class ClosetPage extends StatelessWidget {
+class ClosetPage extends ConsumerStatefulWidget {
   const ClosetPage({super.key});
 
   @override
+  ConsumerState<ClosetPage> createState() => _ClosetPageState();
+}
+
+class _ClosetPageState extends ConsumerState<ClosetPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(closetProvider.notifier).getMyClothes(ClosetCategory.top);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final myCloset = ref.watch(closetProvider);
+
     return DefaultTabController(
       length: ClosetCategory.values.length,
       child: Scaffold(
@@ -21,35 +41,51 @@ class ClosetPage extends StatelessWidget {
             tabs: ClosetCategory.values
                 .map((category) => Tab(text: category.label))
                 .toList(),
+            onTap: (index) {
+              ref.read(closetProvider.notifier).getMyClothes(
+                    ClosetCategory.values[index],
+                  );
+            },
           ),
         ),
         body: Stack(
           children: [
             TabBarView(
               children: ClosetCategory.values.map((category) {
-                return GridView.builder(
-                  padding: const EdgeInsets.only(
-                    left: 8.0,
-                    right: 8.0,
-                    top: 8.0,
-                    bottom: 90.0,
-                  ),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 8.0,
-                    mainAxisSpacing: 8.0,
-                    childAspectRatio: 1,
-                  ),
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    );
-                  },
-                );
+                return switch (myCloset.status) {
+                  Status.initial ||
+                  Status.loading =>
+                    const Center(child: CircularProgressIndicator()),
+                  Status.success => myCloset.clothes.isEmpty
+                      ? Center(
+                          child: Text(
+                            "${category.label} 항목이 비어있습니다.",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        )
+                      : GridView.builder(
+                          padding: const EdgeInsets.only(
+                            left: 8.0,
+                            right: 8.0,
+                            top: 8.0,
+                            bottom: 90.0,
+                          ),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 8.0,
+                            mainAxisSpacing: 8.0,
+                            childAspectRatio: 1,
+                          ),
+                          itemCount: myCloset.clothes.length,
+                          itemBuilder: (context, index) {
+                            return Image.file(
+                              File(myCloset.clothes[index].imagePath),
+                            );
+                          },
+                        ),
+                  Status.error => const Text("에러임 ㅇㅇ;"),
+                };
               }).toList(),
             ),
             const CustomFAB(),
@@ -59,4 +95,3 @@ class ClosetPage extends StatelessWidget {
     );
   }
 }
-

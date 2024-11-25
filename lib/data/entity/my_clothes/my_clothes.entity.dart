@@ -12,10 +12,10 @@ class MyClothesEntity extends HiveObject {
   final String imagePath;
 
   @HiveField(2)
-  final ClosetCategory category;
+  final String category;
 
   @HiveField(3)
-  final DateTime createdAt;
+  final String createdAt;
 
   @HiveField(4, defaultValue: '')
   final String memo;
