@@ -14,9 +14,6 @@ import '../../../../domain/usecase/my_closet/my_closet.usecase.dart';
 import '../closet_category.dart';
 import 'closet_state.dart';
 
-final closetCategoryProvider =
-    StateProvider<ClosetCategory>((ref) => ClosetCategory.top);
-
 final closetProvider = StateNotifierProvider<ClosetNotifier, ClosetState>(
     (ref) => getIt<ClosetNotifier>());
 
@@ -26,11 +23,11 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
 
   ClosetNotifier(this._myClosetUsecase) : super(const ClosetState());
 
-  Future<void> getMyClothes(ClosetCategory category) async {
+  Future<void> getMyClothes() async {
     state = state.copyWith(status: Status.loading);
     try {
       final response = await _myClosetUsecase.execute(
-        usecase: GetMyClosetUsecase(category: category),
+        usecase: GetMyClosetUsecase(),
       );
       response.when(
         success: (data) {

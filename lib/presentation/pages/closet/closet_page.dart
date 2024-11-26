@@ -21,7 +21,7 @@ class _ClosetPageState extends ConsumerState<ClosetPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(closetProvider.notifier).getMyClothes(ClosetCategory.top);
+      ref.read(closetProvider.notifier).getMyClothes();
     });
   }
 
@@ -41,22 +41,19 @@ class _ClosetPageState extends ConsumerState<ClosetPage> {
             tabs: ClosetCategory.values
                 .map((category) => Tab(text: category.label))
                 .toList(),
-            onTap: (index) {
-              ref.read(closetProvider.notifier).getMyClothes(
-                    ClosetCategory.values[index],
-                  );
-            },
           ),
         ),
         body: Stack(
           children: [
             TabBarView(
               children: ClosetCategory.values.map((category) {
+                final categoryClothes = myCloset.clothes[category] ?? [];
+
                 return switch (myCloset.status) {
                   Status.initial ||
                   Status.loading =>
                     const Center(child: CircularProgressIndicator()),
-                  Status.success => myCloset.clothes.isEmpty
+                  Status.success => categoryClothes.isEmpty
                       ? Center(
                           child: Text(
                             "${category.label} 항목이 비어있습니다.",
@@ -77,10 +74,10 @@ class _ClosetPageState extends ConsumerState<ClosetPage> {
                             mainAxisSpacing: 8.0,
                             childAspectRatio: 1,
                           ),
-                          itemCount: myCloset.clothes.length,
+                          itemCount: categoryClothes.length,
                           itemBuilder: (context, index) {
                             return Image.file(
-                              File(myCloset.clothes[index].imagePath),
+                              File(categoryClothes[index].imagePath),
                             );
                           },
                         ),

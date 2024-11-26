@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ClosetState {
   Status get status => throw _privateConstructorUsedError;
-  List<MyClothes> get clothes => throw _privateConstructorUsedError;
+  Map<ClosetCategory, List<MyClothes>> get clothes =>
+      throw _privateConstructorUsedError;
   List<String> get selectedClothesIds => throw _privateConstructorUsedError;
   ErrorResponse get error => throw _privateConstructorUsedError;
 
@@ -34,7 +35,7 @@ abstract class $ClosetStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Status status,
-      List<MyClothes> clothes,
+      Map<ClosetCategory, List<MyClothes>> clothes,
       List<String> selectedClothesIds,
       ErrorResponse error});
 }
@@ -65,7 +66,7 @@ class _$ClosetStateCopyWithImpl<$Res, $Val extends ClosetState>
       clothes: null == clothes
           ? _value.clothes
           : clothes // ignore: cast_nullable_to_non_nullable
-              as List<MyClothes>,
+              as Map<ClosetCategory, List<MyClothes>>,
       selectedClothesIds: null == selectedClothesIds
           ? _value.selectedClothesIds
           : selectedClothesIds // ignore: cast_nullable_to_non_nullable
@@ -88,7 +89,7 @@ abstract class _$$ClosetStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status status,
-      List<MyClothes> clothes,
+      Map<ClosetCategory, List<MyClothes>> clothes,
       List<String> selectedClothesIds,
       ErrorResponse error});
 }
@@ -117,7 +118,7 @@ class __$$ClosetStateImplCopyWithImpl<$Res>
       clothes: null == clothes
           ? _value._clothes
           : clothes // ignore: cast_nullable_to_non_nullable
-              as List<MyClothes>,
+              as Map<ClosetCategory, List<MyClothes>>,
       selectedClothesIds: null == selectedClothesIds
           ? _value._selectedClothesIds
           : selectedClothesIds // ignore: cast_nullable_to_non_nullable
@@ -135,7 +136,8 @@ class __$$ClosetStateImplCopyWithImpl<$Res>
 class _$ClosetStateImpl implements _ClosetState {
   const _$ClosetStateImpl(
       {this.status = Status.initial,
-      final List<MyClothes> clothes = const <MyClothes>[],
+      final Map<ClosetCategory, List<MyClothes>> clothes =
+          const <ClosetCategory, List<MyClothes>>{},
       final List<String> selectedClothesIds = const <String>[],
       this.error = const ErrorResponse()})
       : _clothes = clothes,
@@ -144,13 +146,13 @@ class _$ClosetStateImpl implements _ClosetState {
   @override
   @JsonKey()
   final Status status;
-  final List<MyClothes> _clothes;
+  final Map<ClosetCategory, List<MyClothes>> _clothes;
   @override
   @JsonKey()
-  List<MyClothes> get clothes {
-    if (_clothes is EqualUnmodifiableListView) return _clothes;
+  Map<ClosetCategory, List<MyClothes>> get clothes {
+    if (_clothes is EqualUnmodifiableMapView) return _clothes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_clothes);
+    return EqualUnmodifiableMapView(_clothes);
   }
 
   final List<String> _selectedClothesIds;
@@ -202,14 +204,14 @@ class _$ClosetStateImpl implements _ClosetState {
 abstract class _ClosetState implements ClosetState {
   const factory _ClosetState(
       {final Status status,
-      final List<MyClothes> clothes,
+      final Map<ClosetCategory, List<MyClothes>> clothes,
       final List<String> selectedClothesIds,
       final ErrorResponse error}) = _$ClosetStateImpl;
 
   @override
   Status get status;
   @override
-  List<MyClothes> get clothes;
+  Map<ClosetCategory, List<MyClothes>> get clothes;
   @override
   List<String> get selectedClothesIds;
   @override
