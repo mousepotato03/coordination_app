@@ -31,14 +31,6 @@ class MyClosetDao {
   Future<ResponseWrapper<List<MyClothesEntity>>> deleteMyClothes(
       List<String> ids) async {
     final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);
-    // 존재하지 않는 옷일 경우 예외처리
-    if (!localDB.containsKey(ids)) {
-      return const ResponseWrapper(
-        status: "FAIL",
-        code: "4004",
-        message: "존재하지 않는 옷입니다",
-      );
-    }
 
     await localDB.deleteAll(ids);
 

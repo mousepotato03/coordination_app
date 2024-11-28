@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,6 +5,7 @@ import '../../../core/constants.dart';
 import '../../../core/theme/constant/app_colors.dart';
 import 'closet_category.dart';
 import 'riverpod/closet_provider.dart';
+import 'widgets/clothes_card.dart';
 import 'widgets/custom_fab.dart';
 
 class ClosetPage extends ConsumerStatefulWidget {
@@ -75,11 +74,9 @@ class _ClosetPageState extends ConsumerState<ClosetPage> {
                             childAspectRatio: 1,
                           ),
                           itemCount: categoryClothes.length,
-                          itemBuilder: (context, index) {
-                            return Image.file(
-                              File(categoryClothes[index].imagePath),
-                            );
-                          },
+                          itemBuilder: (context, index) => ClothesCard(
+                            clothes: categoryClothes[index],
+                          ),
                         ),
                   Status.error => const Text("에러임 ㅇㅇ;"),
                 };

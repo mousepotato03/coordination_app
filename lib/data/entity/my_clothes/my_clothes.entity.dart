@@ -1,5 +1,4 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import '../../../presentation/pages/closet/closet_category.dart';
 
 part 'my_clothes.entity.g.dart';
 

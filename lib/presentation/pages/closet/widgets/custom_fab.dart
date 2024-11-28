@@ -1,17 +1,20 @@
+import 'package:coordination_app/presentation/pages/closet/riverpod/closet_provider.dart';
+import 'package:coordination_app/presentation/pages/closet/riverpod/delete_mode_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/theme/constant/app_colors.dart';
 
-class CustomFAB extends StatefulWidget {
+class CustomFAB extends ConsumerStatefulWidget {
   const CustomFAB({super.key});
 
   @override
-  State<CustomFAB> createState() => _CustomFABState();
+  ConsumerState<CustomFAB> createState() => _CustomFABState();
 }
 
-class _CustomFABState extends State<CustomFAB> {
+class _CustomFABState extends ConsumerState<CustomFAB> {
   bool isExpanded = false;
 
   @override
@@ -38,7 +41,7 @@ class _CustomFABState extends State<CustomFAB> {
               children: [
                 isExpanded
                     ? _buildExpandedColumn(context)
-                    : _buildDeleteButton(),
+                    : _buildDeleteButton(ref),
                 const SizedBox(height: 8),
                 _buildAddButton(),
               ],
@@ -69,10 +72,14 @@ class _CustomFABState extends State<CustomFAB> {
     );
   }
 
-  Widget _buildDeleteButton() {
+  Widget _buildDeleteButton(WidgetRef ref) {
+    final isDeleteMode = ref.watch(deleteModeProvider);
+
     return GestureDetector(
       onTap: () {
-        // TODO: 삭제 기능 구현
+        ref.read(deleteModeProvider.notifier).toggleDeleteMode();
+
+        if (isDeleteMode) ref.read(closetProvider.notifier).deleteMyClothes();
       },
       child: Container(
         height: 56,
@@ -82,7 +89,9 @@ class _CustomFABState extends State<CustomFAB> {
           borderRadius: BorderRadius.circular(30),
           border: Border.all(color: AppColors.black, width: 1.5),
         ),
-        child: const Icon(Icons.delete_forever),
+        child: !isDeleteMode
+            ? const Icon(Icons.delete_forever)
+            : const Icon(Icons.check),
       ),
     );
   }

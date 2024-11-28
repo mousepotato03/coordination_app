@@ -14,6 +14,7 @@ class AddMyClothesUsecase extends LocalUsecase<MyClosetRepository> {
   @override
   Future call(MyClosetRepository repository) async {
     final result = await repository.addMyClothes(clothes);
+
     return result.status.isSuccess
         ? Result.success(result.data)
         : Result.failure(

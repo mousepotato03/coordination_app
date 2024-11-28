@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../widget/custom_text_field.dart';
+
 import '../riverpod/my_size_info_provider.dart';
+import '../widget/custom_text_field.dart';
 
 class BaseInfoPage extends ConsumerWidget {
   const BaseInfoPage({super.key});

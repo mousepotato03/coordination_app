@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../presentation/pages/closet/closet_category.dart';
 
 part 'my_clothes.model.freezed.dart';

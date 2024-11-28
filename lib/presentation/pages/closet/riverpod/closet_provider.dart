@@ -68,7 +68,8 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
       );
       response.when(
         success: (data) {
-          state = state.copyWith(status: Status.success, clothes: data);
+          state = state.copyWith(status: Status.success);
+          getMyClothes();
         },
         failure: (error) {
           state = state.copyWith(status: Status.error, error: error);
@@ -83,18 +84,27 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
     }
   }
 
-  Future<void> deleteMyClothes(List<String> ids) async {
+  Future<void> deleteMyClothes() async {
     state = state.copyWith(status: Status.loading);
     try {
       final response = await _myClosetUsecase.execute(
-        usecase: DeleteMyClothesUsecase(ids),
+        usecase: DeleteMyClothesUsecase([...state.selectedClothesIds]),
       );
+
       response.when(
         success: (data) {
-          state = state.copyWith(status: Status.success);
+          state = state.copyWith(
+            status: Status.success,
+            selectedClothesIds: [],
+          );
+          getMyClothes();
         },
         failure: (error) {
-          state = state.copyWith(status: Status.error, error: error);
+          state = state.copyWith(
+            status: Status.error,
+            error: error,
+            selectedClothesIds: [],
+          );
         },
       );
     } catch (e) {
@@ -104,6 +114,23 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
         error: CommonException.setError(e),
       );
     }
+  }
+
+  void addToDeleteList(String id) {
+    if (state.selectedClothesIds.contains(id)) return;
+
+    state = state.copyWith(
+      selectedClothesIds: [...state.selectedClothesIds, id],
+    );
+  }
+
+  void removeFromDeleteList(String id) {
+    if (!state.selectedClothesIds.contains(id)) return;
+
+    state = state.copyWith(
+      selectedClothesIds:
+          state.selectedClothesIds.where((item) => item != id).toList(),
+    );
   }
 
   Future<void> modifyMyClothes(MyClothes clothes) async {
