@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.8.20'
     repositories {
         google()
         mavenCentral()
@@ -11,8 +11,13 @@ buildscript {
     }
 }
 
+
 allprojects {
     repositories {
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
+
         google()
         mavenCentral()
     }
@@ -22,6 +27,36 @@ rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
+subprojects {
+    afterEvaluate {
+
+        if (project.plugins.hasPlugin("com.android.application")
+                || project.plugins.hasPlugin("com.android.library")) {
+
+            if (project.name == "flutter_unity_widget") {
+                // override version numbers if needed
+                project.android.compileOptions {
+                    sourceCompatibility = JavaVersion.VERSION_17
+                    targetCompatibility = JavaVersion.VERSION_17
+                }
+                project.android.kotlinOptions {
+                    jvmTarget = JavaVersion.VERSION_17
+                }
+                project.android {
+                    // add namespace if it is missing
+                    if (namespace == null) {
+                        namespace = project.group
+                    }
+
+                    // you can also override stuff like compileSdk
+                    compileSdk = 34
+                }
+            }
+        }
+    }
+}
+
 subprojects {
     project.evaluationDependsOn(":app")
 }

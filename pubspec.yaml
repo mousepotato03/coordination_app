@@ -34,8 +34,6 @@ dependencies:
   #ui
   go_router: ^14.4.1
   cupertino_icons: ^1.0.6
-  rive: ^0.13.15
-
 
   #state management
   flutter_riverpod: ^2.6.1
@@ -67,6 +65,10 @@ dev_dependencies:
   injectable_generator: ^2.6.2
   json_serializable:
   freezed:
+  flutter_unity_widget:
+    git:
+      url: https://github.com/juicycleff/flutter-unity-view-widget.git
+      ref: experimental/unity_6000 # branch name
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -83,7 +85,6 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - assets/images/splash/
     - assets/icons/
     - assets/icons/svg/
 

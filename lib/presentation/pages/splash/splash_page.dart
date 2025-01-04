@@ -1,13 +1,10 @@
-
 import 'dart:async';
 
 import 'package:coordination_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rive/rive.dart' hide LinearGradient;
 
 import '../../routes/route_path.dart';
-
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -20,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(milliseconds: 4000), ()=> context.go(RoutePath.main));
+    Timer(const Duration(milliseconds: 4000), () => context.go(RoutePath.main));
   }
 
   @override
@@ -42,8 +39,7 @@ class _SplashPageState extends State<SplashPage> {
             ),
           ),
           const Center(
-            child:
-                RiveAnimation.asset("$baseImagePath/splash/splash.riv"),
+            child: Text("Rive 잘가라"),
           ),
         ],
       ),
