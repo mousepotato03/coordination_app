@@ -37,6 +37,111 @@ public class AvatarEditor : MonoBehaviour
     public GameObject pantsMesh;
     public GameObject shoesMesh;
 
+    private void Start()
+    {
+        InitializeClothingMeshes();
+    }
+
+    // Clothes Logic 
+    private void InitializeClothingMeshes()
+    {
+        if (tshirtMesh != null) tshirtMesh.SetActive(false);
+        if (pantsMesh != null) pantsMesh.SetActive(false);
+        if (shoesMesh != null) shoesMesh.SetActive(false);
+    }
+
+    public void ChangeClothing(string jsonData)
+    {
+        try
+        {
+            // JSON 데이터 파싱
+            Dictionary<string, string> clothingData = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonData);
+
+            if (clothingData.ContainsKey("티셔츠") && tshirtMesh != null)
+            {
+                HandleClothingChange(tshirtMesh, clothingData["티셔츠"]);
+            }
+
+            if (clothingData.ContainsKey("바지") && pantsMesh != null)
+            {
+                HandleClothingChange(pantsMesh, clothingData["바지"]);
+            }
+
+            if (clothingData.ContainsKey("신발") && shoesMesh != null)
+            {
+                HandleClothingChange(shoesMesh, clothingData["신발"]);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error in ChangeClothing: {ex.Message}");
+        }
+    }
+
+    private void HandleClothingChange(GameObject meshObject, string command)
+    {
+        if (command == "delete")
+        {
+            meshObject.SetActive(false);
+            Debug.Log($"Disabled mesh: {meshObject.name}");
+        }
+        else if (command == "keep")
+        {
+            Debug.Log($"Keeping current state of mesh: {meshObject.name}");
+        }
+        else
+        {
+            // UV 텍스처 적용
+            ApplyTextureToMesh(meshObject, command);
+            meshObject.SetActive(true); // 활성화
+        }
+    }
+
+    private void ApplyTextureToMesh(GameObject meshObject, string texturePath)
+    {
+        var renderer = meshObject.GetComponent<SkinnedMeshRenderer>();
+
+        if (renderer == null || renderer.materials.Length == 0)
+        {
+            Debug.LogWarning($"Mesh object {meshObject.name} does not have a valid SkinnedMeshRenderer or materials.");
+            return;
+        }
+
+        Material material = renderer.materials[0]; // Element 0 Material
+
+        // 텍스처 로드 및 Material 적용
+        Texture2D texture = LoadTextureFromPath(texturePath);
+        if (texture != null)
+        {
+            material.mainTexture = texture;
+            Debug.Log($"Applied texture to {meshObject.name}: {texturePath}");
+        }
+        else
+        {
+            Debug.LogWarning($"Failed to load texture from path: {texturePath}");
+        }
+    }
+
+    private Texture2D LoadTextureFromPath(string path)
+    {
+        // 텍스처 로드 로직 (예: Resources.Load, 파일 경로 읽기 등)
+        Texture2D texture = new Texture2D(2, 2);
+        byte[] fileData;
+
+        if (System.IO.File.Exists(path))
+        {
+            fileData = System.IO.File.ReadAllBytes(path);
+            if (texture.LoadImage(fileData))
+            {
+                return texture;
+            }
+        }
+
+        return null;
+    }
+
+
+    // Body Size Logic 
     public void ApplyBodyParameters(string jsonData)
     {
         try
@@ -93,7 +198,6 @@ public class AvatarEditor : MonoBehaviour
     }
 
     public void ModifyAvatar()
-
     {
         try
         {
@@ -169,76 +273,5 @@ public class AvatarEditor : MonoBehaviour
         {
             Debug.LogWarning($"NullReferenceException in {nameof(ModifyAvatar)}: {ex.Message}");
         }
-    }
-
-    public void ChangeClothing(string jsonData)
-    {
-        try
-        {
-            // JSON 데이터 파싱
-            Dictionary<string, string> clothingData = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonData);
-
-            if (clothingData.ContainsKey("티셔츠") && tshirtMesh != null)
-            {
-                ApplyTextureToMesh(tshirtMesh, clothingData["티셔츠"]);
-            }
-
-            if (clothingData.ContainsKey("바지") && pantsMesh != null)
-            {
-                ApplyTextureToMesh(pantsMesh, clothingData["바지"]);
-            }
-
-            if (clothingData.ContainsKey("신발") && shoesMesh != null)
-            {
-                ApplyTextureToMesh(shoesMesh, clothingData["신발"]);
-            }
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError($"Error in ChangeClothing: {ex.Message}");
-        }
-    }
-
-    private void ApplyTextureToMesh(GameObject meshObject, string texturePath)
-    {
-        var renderer = meshObject.GetComponent<SkinnedMeshRenderer>();
-
-        if (renderer == null || renderer.materials.Length == 0)
-        {
-            Debug.LogWarning($"Mesh object {meshObject.name} does not have a valid SkinnedMeshRenderer or materials.");
-            return;
-        }
-
-        Material material = renderer.materials[0]; // Element 0 Material
-
-        // 텍스처 로드 및 Material 적용
-        Texture2D texture = LoadTextureFromPath(texturePath);
-        if (texture != null)
-        {
-            material.mainTexture = texture;
-            Debug.Log($"Applied texture to {meshObject.name}: {texturePath}");
-        }
-        else
-        {
-            Debug.LogWarning($"Failed to load texture from path: {texturePath}");
-        }
-    }
-
-    private Texture2D LoadTextureFromPath(string path)
-    {
-        // 텍스처 로드 로직 (예: Resources.Load, 파일 경로 읽기 등)
-        Texture2D texture = new Texture2D(2, 2);
-        byte[] fileData;
-
-        if (System.IO.File.Exists(path))
-        {
-            fileData = System.IO.File.ReadAllBytes(path);
-            if (texture.LoadImage(fileData))
-            {
-                return texture;
-            }
-        }
-
-        return null;
     }
 }

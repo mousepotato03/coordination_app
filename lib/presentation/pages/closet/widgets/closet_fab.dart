@@ -7,14 +7,14 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/theme/constant/app_colors.dart';
 
-class CustomFAB extends ConsumerStatefulWidget {
-  const CustomFAB({super.key});
+class ClosetFAB extends ConsumerStatefulWidget {
+  const ClosetFAB({super.key});
 
   @override
-  ConsumerState<CustomFAB> createState() => _CustomFABState();
+  ConsumerState<ClosetFAB> createState() => _CustomFABState();
 }
 
-class _CustomFABState extends ConsumerState<CustomFAB> {
+class _CustomFABState extends ConsumerState<ClosetFAB> {
   bool isExpanded = false;
 
   @override

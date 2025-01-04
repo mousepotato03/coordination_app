@@ -1,28 +1,22 @@
+import 'package:coordination_app/presentation/pages/avatar/riverpod/unity_controller_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 
-class AvatarPage extends StatefulWidget {
+class AvatarPage extends ConsumerWidget {
   const AvatarPage({super.key});
 
   @override
-  State<AvatarPage> createState() => _AvatarPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final unityController = ref.watch(unityControllerProvider);
 
-class _AvatarPageState extends State<AvatarPage> {
-  late UnityWidgetController _unityWidgetController;
-
-  @override
-  Widget build(BuildContext context) {
     return Stack(
       children: [
         UnityWidget(
-          onUnityCreated: onUnityCreated,
+          onUnityCreated: (controller) {},
         ),
       ],
     );
-  }
-
-  void onUnityCreated(UnityWidgetController controller) {
-    _unityWidgetController = controller;
+    ;
   }
 }

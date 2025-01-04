@@ -6,7 +6,7 @@ import '../../../core/theme/constant/app_colors.dart';
 import 'closet_category.dart';
 import 'riverpod/closet_provider.dart';
 import 'widgets/clothes_card.dart';
-import 'widgets/custom_fab.dart';
+import 'widgets/closet_fab.dart';
 
 class ClosetPage extends ConsumerStatefulWidget {
   const ClosetPage({super.key});
@@ -82,7 +82,7 @@ class _ClosetPageState extends ConsumerState<ClosetPage> {
                 };
               }).toList(),
             ),
-            const CustomFAB(),
+            const ClosetFAB(),
           ],
         ),
       ),

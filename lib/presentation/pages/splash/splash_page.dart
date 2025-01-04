@@ -1,10 +1,11 @@
-import 'dart:async';
-
 import 'package:coordination_app/core/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../routes/route_path.dart';
+import '../avatar/riverpod/unity_controller_provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -14,10 +15,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  bool _isUnityLoaded = false;
+
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(milliseconds: 4000), () => context.go(RoutePath.main));
+  }
+
+  void _onUnityLoaded(UnityWidgetController controller, WidgetRef ref) {
+    ref.read(unityControllerProvider.notifier).state = controller;
+    setState(() {
+      _isUnityLoaded = true;
+    });
+    context.go(RoutePath.main);
   }
 
   @override
@@ -25,21 +35,23 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xffffb85a),
-                  Color(0xff5a5c5d),
-                  Color(0xff9b6429),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+          Opacity(
+            opacity: 0,
+            child: Consumer(
+              builder: (context, ref, child) => UnityWidget(
+                onUnityCreated: (controller) => _onUnityLoaded(controller, ref),
               ),
             ),
           ),
-          const Center(
-            child: Text("Rive 잘가라"),
+          const ColoredBox(
+            color: Color(0xffffb85a),
+            child: SizedBox.expand(),
+          ),
+          Center(
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Image.asset("$baseImagePath/logo.png"),
+            ),
           ),
         ],
       ),
