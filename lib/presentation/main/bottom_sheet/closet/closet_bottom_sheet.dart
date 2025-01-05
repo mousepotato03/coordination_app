@@ -40,15 +40,6 @@ class _ClosetBottomSheetState extends ConsumerState<ClosetBottomSheet> {
           appBar: const ClosetBottomSheetAppBar(),
           body: Stack(
             children: [
-              TabBar(
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicatorColor: AppColors.primary,
-                labelColor: AppColors.black,
-                unselectedLabelColor: AppColors.black,
-                tabs: ClosetCategory.values
-                    .map((category) => Tab(text: category.label))
-                    .toList(),
-              ),
               TabBarView(
                 children: ClosetCategory.values.map((category) {
                   final categoryClothes = myCloset.clothes[category] ?? [];
@@ -68,7 +59,7 @@ class _ClosetBottomSheetState extends ConsumerState<ClosetBottomSheet> {
                             padding: const EdgeInsets.only(
                               left: 8.0,
                               right: 8.0,
-                              top: 8.0,
+                              top: 58.0,
                               bottom: 90.0,
                             ),
                             gridDelegate:
@@ -86,6 +77,15 @@ class _ClosetBottomSheetState extends ConsumerState<ClosetBottomSheet> {
                     Status.error => const Text("에러임 ㅇㅇ;"),
                   };
                 }).toList(),
+              ),
+              TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicatorColor: AppColors.primary,
+                labelColor: AppColors.black,
+                unselectedLabelColor: AppColors.black,
+                tabs: ClosetCategory.values
+                    .map((category) => Tab(text: category.label))
+                    .toList(),
               ),
               const ClosetFAB(),
             ],
