@@ -28,7 +28,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     final isEditMode = ref.watch(mySizeInfoProvider).isEditMode;
     final status = ref.watch(mySizeInfoProvider).status;
-    return Center(
+    return Scaffold(
+        body: Center(
       child: switch (status) {
         Status.initial || Status.loading => const CircularProgressIndicator(),
         Status.success => Column(
@@ -70,6 +71,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ),
         Status.error => const Text("에러"),
       },
-    );
+    ));
   }
 }

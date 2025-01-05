@@ -2,7 +2,7 @@ import 'package:coordination_app/core/extenstions.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 
 import '../../../core/utils/error/error_response.dart';
-import '../../../presentation/pages/closet/closet_category.dart';
+import '../../../presentation/main/bottom_sheet/closet/closet_category.dart';
 import '../../model/common/result.dart';
 import '../../repository/my_closet.repository.dart';
 import '../base/local.usecase.dart';

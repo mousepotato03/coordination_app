@@ -26,8 +26,8 @@ import 'package:coordination_app/domain/usecase/my_closet/my_closet.usecase.dart
     as _i314;
 import 'package:coordination_app/domain/usecase/my_size/my_size_info.usecase.dart'
     as _i266;
-import 'package:coordination_app/presentation/pages/closet/riverpod/closet_provider.dart'
-    as _i520;
+import 'package:coordination_app/presentation/main/bottom_sheet/closet/riverpod/closet_provider.dart'
+    as _i519;
 import 'package:coordination_app/presentation/pages/profile/riverpod/my_size_info_provider.dart'
     as _i952;
 import 'package:get_it/get_it.dart' as _i174;
@@ -57,8 +57,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i314.MyClosetUsecase(gh<_i490.MyClosetRepository>()));
     gh.factory<_i952.MySizeInfoNotifier>(
         () => _i952.MySizeInfoNotifier(gh<_i266.MySizeInfoUsecase>()));
-    gh.factory<_i520.ClosetNotifier>(
-        () => _i520.ClosetNotifier(gh<_i314.MyClosetUsecase>()));
+    gh.factory<_i519.ClosetNotifier>(
+        () => _i519.ClosetNotifier(gh<_i314.MyClosetUsecase>()));
     return this;
   }
 }

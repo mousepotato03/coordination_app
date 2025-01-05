@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
-import 'package:coordination_app/presentation/pages/closet/riverpod/closet_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../domain/model/my_clothes/my_clothes.model.dart';
+import '../../../../../domain/model/my_clothes/my_clothes.model.dart';
+import '../riverpod/closet_provider.dart';
 import '../riverpod/delete_mode_provider.dart';
 
 class ClothesCard extends ConsumerStatefulWidget {

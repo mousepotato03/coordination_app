@@ -1,11 +1,11 @@
-import 'package:coordination_app/presentation/pages/closet/riverpod/closet_provider.dart';
-import 'package:coordination_app/presentation/pages/closet/riverpod/delete_mode_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/theme/constant/app_colors.dart';
+import '../riverpod/closet_provider.dart';
+import '../riverpod/delete_mode_provider.dart';
 
 class ClosetFAB extends ConsumerStatefulWidget {
   const ClosetFAB({super.key});

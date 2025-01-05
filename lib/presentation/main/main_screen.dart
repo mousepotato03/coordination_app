@@ -1,11 +1,13 @@
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/presentation/pages/avatar/avatar_page.dart';
-import 'package:coordination_app/presentation/pages/closet/closet_page.dart';
 import 'package:coordination_app/presentation/pages/profile/profile_page.dart';
+import 'package:coordination_app/presentation/pages/unknown/unknown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
+import 'bottom_sheet/closet/closet_bottom_sheet.dart';
 import 'riverpod/bottom_nav_controller.dart';
 
 class MainScreen extends ConsumerWidget {
@@ -17,12 +19,25 @@ class MainScreen extends ConsumerWidget {
 
     return Scaffold(
       extendBody: true,
-      body: _buildPage(currentNav),
+      body: currentNav == BottomNav.values.indexOf(BottomNav.avatar)
+          ? SlidingUpPanel(
+              maxHeight: 700,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16.0),
+                topRight: Radius.circular(16.0),
+              ),
+              body: const AvatarPage(),
+              panelBuilder: () =>
+                  currentNav == BottomNav.values.indexOf(BottomNav.avatar)
+                      ? const ClosetBottomSheet()
+                      : null,
+            )
+          : _buildPage(currentNav),
       bottomNavigationBar: _buildBottomNavigation(currentNav, ref),
     );
   }
 
-  Container _buildBottomNavigation(int currentNav, WidgetRef ref) {
+  Widget _buildBottomNavigation(int currentNav, WidgetRef ref) {
     return Container(
       decoration: const BoxDecoration(boxShadow: [
         BoxShadow(color: Colors.black26, spreadRadius: 0, blurRadius: 10),
@@ -66,8 +81,8 @@ class MainScreen extends ConsumerWidget {
 
   Widget _buildPage(int index) {
     switch (BottomNav.values[index]) {
-      case BottomNav.closet:
-        return const ClosetPage();
+      case BottomNav.unknown:
+        return const UnknownPage();
       case BottomNav.profile:
         return const ProfilePage();
       case BottomNav.avatar:

@@ -1,5 +1,5 @@
 import '../../domain/model/my_clothes/my_clothes.model.dart';
-import '../../presentation/pages/closet/closet_category.dart';
+import '../../presentation/main/bottom_sheet/closet/closet_category.dart';
 import '../entity/my_clothes/my_clothes.entity.dart';
 
 //model => entity
