@@ -28,6 +28,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     final isEditMode = ref.watch(mySizeInfoProvider).isEditMode;
     final status = ref.watch(mySizeInfoProvider).status;
+
     return Scaffold(
         body: Center(
       child: switch (status) {

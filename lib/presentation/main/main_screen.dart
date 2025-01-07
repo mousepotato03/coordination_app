@@ -26,7 +26,7 @@ class MainScreen extends ConsumerWidget {
                 topLeft: Radius.circular(16.0),
                 topRight: Radius.circular(16.0),
               ),
-              body: const AvatarPage(),
+              body: AvatarPage(),
               panelBuilder: () =>
                   currentNav == BottomNav.values.indexOf(BottomNav.avatar)
                       ? const ClosetBottomSheet()
@@ -81,13 +81,13 @@ class MainScreen extends ConsumerWidget {
 
   Widget _buildPage(int index) {
     switch (BottomNav.values[index]) {
-      case BottomNav.unknown:
-        return const UnknownPage();
+      case BottomNav.login:
+        return const LoginPage();
       case BottomNav.profile:
         return const ProfilePage();
       case BottomNav.avatar:
       default:
-        return const AvatarPage();
+        return AvatarPage();
     }
   }
 }

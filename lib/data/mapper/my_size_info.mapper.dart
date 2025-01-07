@@ -12,10 +12,9 @@ extension MySizeInfoEx on MySizeInfo {
       weight: weight,
       upperBodyHeight: upperBodyHeight,
       shoulderWidth: shoulderWidth,
-      chestHeight: chestHeight,
+      armLength: armLength,
       lowerBodyHeight: lowerBodyHeight,
       waistWidth: waistWidth,
-      hipWidth: hipWidth,
       shoesSize: shoesSize,
     );
   }
@@ -32,10 +31,9 @@ extension MySizeInfoEntityX on MySizeInfoEntity {
       weight: weight,
       upperBodyHeight: upperBodyHeight,
       shoulderWidth: shoulderWidth,
-      chestHeight: chestHeight,
+      armLength: armLength,
       lowerBodyHeight: lowerBodyHeight,
       waistWidth: waistWidth,
-      hipWidth: hipWidth,
       shoesSize: shoesSize,
     );
   }

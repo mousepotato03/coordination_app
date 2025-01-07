@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/constant/app_icons.dart';
 
-enum BottomNav { profile, avatar, unknown }
+enum BottomNav { profile, avatar, login }
 
 final bottomNavProvider = StateNotifierProvider<BottomNavController, int>(
     (ref) => BottomNavController());
@@ -16,8 +16,8 @@ class BottomNavController extends StateNotifier<int> {
 extension BottomNavEx on BottomNav {
   String get toName {
     switch (this) {
-      case BottomNav.unknown:
-        return "옷장";
+      case BottomNav.login:
+        return "로그인";
       case BottomNav.avatar:
         return "아바타";
       case BottomNav.profile:
@@ -27,8 +27,8 @@ extension BottomNavEx on BottomNav {
 
   String get icon {
     switch (this) {
-      case BottomNav.unknown:
-        return AppIcons.closet;
+      case BottomNav.login:
+        return AppIcons.login;
       case BottomNav.avatar:
         return AppIcons.avatar;
       case BottomNav.profile:

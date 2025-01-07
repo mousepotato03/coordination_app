@@ -28,13 +28,6 @@ class LowerBodyInfoPage extends ConsumerWidget {
           unit: 'cm',
           isEditMode: isEditMode,
         ),
-        CustomTextField(
-          label: '엉덩이단면 :',
-          field: 'hipWidth',
-          value: mySize.hipWidth.toString(),
-          unit: 'cm',
-          isEditMode: isEditMode,
-        ),
       ],
     );
   }

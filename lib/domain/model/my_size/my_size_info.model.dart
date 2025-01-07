@@ -9,23 +9,22 @@ class MySizeInfo with _$MySizeInfo {
   const factory MySizeInfo({
     //기본 정보
     @Default('') String name,
-    @Default(0) int age,
+    @Default(1) int age,
     @Default('') String sex,
-    @Default(0.0) double height,
-    @Default(0.0) double weight,
+    @Default(178.0) double height,
+    @Default(68.0) double weight,
 
     //상의
-    @Default(0.0) double upperBodyHeight,
-    @Default(0.0) double shoulderWidth,
-    @Default(0.0) double chestHeight,
+    @Default(67.2) double upperBodyHeight,
+    @Default(39.2) double shoulderWidth,
+    @Default(58.6) double armLength,
 
     //하의
-    @Default(0.0) double lowerBodyHeight,
-    @Default(0.0) double waistWidth,
-    @Default(0.0) double hipWidth,
+    @Default(100.9) double lowerBodyHeight,
+    @Default(25.6) double waistWidth,
 
     //신발
-    @Default(0) int shoesSize,
+    @Default(270) int shoesSize,
   }) = _MySizeInfo;
 
   factory MySizeInfo.fromJson(Map<String, dynamic> json) =>

@@ -20,22 +20,21 @@ class MySizeInfoEntityAdapter extends TypeAdapter<MySizeInfoEntity> {
       name: fields[0] == null ? '' : fields[0] as String,
       age: fields[1] == null ? 1 : fields[1] as int,
       sex: fields[2] == null ? '' : fields[2] as String,
-      height: fields[3] == null ? 0.0 : fields[3] as double,
-      weight: fields[4] == null ? 0.0 : fields[4] as double,
-      upperBodyHeight: fields[5] == null ? 0.0 : fields[5] as double,
-      shoulderWidth: fields[6] == null ? 0.0 : fields[6] as double,
-      chestHeight: fields[7] == null ? 0.0 : fields[7] as double,
-      lowerBodyHeight: fields[8] == null ? 0.0 : fields[8] as double,
-      waistWidth: fields[9] == null ? 0.0 : fields[9] as double,
-      hipWidth: fields[10] == null ? 0.0 : fields[10] as double,
-      shoesSize: fields[11] == null ? 0 : fields[11] as int,
+      height: fields[3] == null ? 178.0 : fields[3] as double,
+      weight: fields[4] == null ? 68.0 : fields[4] as double,
+      upperBodyHeight: fields[5] == null ? 67.2 : fields[5] as double,
+      shoulderWidth: fields[6] == null ? 39.2 : fields[6] as double,
+      armLength: fields[7] == null ? 58.6 : fields[7] as double,
+      lowerBodyHeight: fields[8] == null ? 100.9 : fields[8] as double,
+      waistWidth: fields[9] == null ? 25.6 : fields[9] as double,
+      shoesSize: fields[10] == null ? 270 : fields[10] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, MySizeInfoEntity obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -51,14 +50,12 @@ class MySizeInfoEntityAdapter extends TypeAdapter<MySizeInfoEntity> {
       ..writeByte(6)
       ..write(obj.shoulderWidth)
       ..writeByte(7)
-      ..write(obj.chestHeight)
+      ..write(obj.armLength)
       ..writeByte(8)
       ..write(obj.lowerBodyHeight)
       ..writeByte(9)
       ..write(obj.waistWidth)
       ..writeByte(10)
-      ..write(obj.hipWidth)
-      ..writeByte(11)
       ..write(obj.shoesSize);
   }
 

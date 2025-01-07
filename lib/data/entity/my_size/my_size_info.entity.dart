@@ -4,51 +4,48 @@ part 'my_size_info.entity.g.dart';
 
 @HiveType(typeId: 0)
 class MySizeInfoEntity extends HiveObject {
-  //기본 정보
+  // 기본 정보
   @HiveField(0, defaultValue: '')
   String name;
   @HiveField(1, defaultValue: 1)
   int age;
   @HiveField(2, defaultValue: '')
   String sex;
-  @HiveField(3, defaultValue: 0.0)
+  @HiveField(3, defaultValue: 178.0)
   double height;
-  @HiveField(4, defaultValue: 0.0)
+  @HiveField(4, defaultValue: 68.0)
   double weight;
 
-  //상의
-  @HiveField(5, defaultValue: 0.0)
+  // 상의
+  @HiveField(5, defaultValue: 67.2)
   double upperBodyHeight;
-  @HiveField(6, defaultValue: 0.0)
+  @HiveField(6, defaultValue: 39.2)
   double shoulderWidth;
-  @HiveField(7, defaultValue: 0.0)
-  double chestHeight;
+  @HiveField(7, defaultValue: 58.6)
+  double armLength;
 
-  //하의
-  @HiveField(8, defaultValue: 0.0)
+  // 하의
+  @HiveField(8, defaultValue: 100.9)
   double lowerBodyHeight;
-  @HiveField(9, defaultValue: 0.0)
+  @HiveField(9, defaultValue: 25.6)
   double waistWidth;
-  @HiveField(10, defaultValue: 0.0)
-  double hipWidth;
 
-  //신발
-  @HiveField(11, defaultValue: 0)
+  // 신발
+  @HiveField(10, defaultValue: 270)
   int shoesSize;
 
   MySizeInfoEntity({
     this.name = '',
-    this.age = 1,
+    this.age = 0,
     this.sex = '',
-    this.height = 0.0,
-    this.weight = 0.0,
-    this.upperBodyHeight = 0.0,
-    this.shoulderWidth = 0.0,
-    this.chestHeight = 0.0,
-    this.lowerBodyHeight = 0.0,
-    this.waistWidth = 0.0,
-    this.hipWidth = 0.0,
-    this.shoesSize = 0,
+    this.height = 178.0,
+    this.weight = 68.0,
+    this.upperBodyHeight = 67.2,
+    this.shoulderWidth = 39.2,
+    this.armLength = 58.6,
+    this.lowerBodyHeight = 100.9,
+    this.waistWidth = 25.6,
+    this.shoesSize = 270,
   });
 
   Map<String, dynamic> toJson() {
@@ -60,12 +57,10 @@ class MySizeInfoEntity extends HiveObject {
       'weight': weight,
       'upperBodyHeight': upperBodyHeight,
       'shoulderWidth': shoulderWidth,
-      'chestHeight': chestHeight,
+      'armLength': armLength,
       'lowerBodyHeight': lowerBodyHeight,
       'waistWidth': waistWidth,
-      'hipWidth': hipWidth,
       'shoesSize': shoesSize,
     };
   }
 }
-

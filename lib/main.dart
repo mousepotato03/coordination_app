@@ -15,7 +15,7 @@ void main() async {
 
   //의존성 주입
   configureDependencies();
-  
+
   runApp(const CoordinationApp());
 }
 

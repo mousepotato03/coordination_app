@@ -86,15 +86,13 @@ class MySizeInfoNotifier extends StateNotifier<MySizeInfoState> {
         state.mySizeInfo.copyWith(upperBodyHeight: double.parse(value)),
       'shoulderWidth' =>
         state.mySizeInfo.copyWith(shoulderWidth: double.parse(value)),
-      'chestHeight' =>
-        state.mySizeInfo.copyWith(chestHeight: double.parse(value)),
+      'armLength' => state.mySizeInfo.copyWith(armLength: double.parse(value)),
 
       // 하의
       'lowerBodyHeight' =>
         state.mySizeInfo.copyWith(lowerBodyHeight: double.parse(value)),
       'waistWidth' =>
         state.mySizeInfo.copyWith(waistWidth: double.parse(value)),
-      'hipWidth' => state.mySizeInfo.copyWith(hipWidth: double.parse(value)),
 
       // 신발
       'shoesSize' => state.mySizeInfo.copyWith(shoesSize: int.parse(value)),

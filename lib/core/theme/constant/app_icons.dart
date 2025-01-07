@@ -1,6 +1,9 @@
+import 'package:coordination_app/core/utils/constants.dart';
+
 class AppIcons {
   //BottomNav Item
-  static const String avatar = 'assets/icons/svg/avatar.svg';
-  static const String closet = 'assets/icons/svg/closet.svg';
-  static const String profile = 'assets/icons/svg/profile.svg';
+  static const String avatar = '$baseIconPath/svg/avatar.svg';
+  static const String closet = '$baseIconPath/svg/closet.svg';
+  static const String profile = '$baseIconPath/svg/profile.svg';
+  static const String login = '$baseIconPath/svg/login.svg';
 }

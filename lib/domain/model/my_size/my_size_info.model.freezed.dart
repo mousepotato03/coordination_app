@@ -28,10 +28,9 @@ mixin _$MySizeInfo {
   double get weight => throw _privateConstructorUsedError; //상의
   double get upperBodyHeight => throw _privateConstructorUsedError;
   double get shoulderWidth => throw _privateConstructorUsedError;
-  double get chestHeight => throw _privateConstructorUsedError; //하의
+  double get armLength => throw _privateConstructorUsedError; //하의
   double get lowerBodyHeight => throw _privateConstructorUsedError;
-  double get waistWidth => throw _privateConstructorUsedError;
-  double get hipWidth => throw _privateConstructorUsedError; //신발
+  double get waistWidth => throw _privateConstructorUsedError; //신발
   int get shoesSize => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,10 +53,9 @@ abstract class $MySizeInfoCopyWith<$Res> {
       double weight,
       double upperBodyHeight,
       double shoulderWidth,
-      double chestHeight,
+      double armLength,
       double lowerBodyHeight,
       double waistWidth,
-      double hipWidth,
       int shoesSize});
 }
 
@@ -81,10 +79,9 @@ class _$MySizeInfoCopyWithImpl<$Res, $Val extends MySizeInfo>
     Object? weight = null,
     Object? upperBodyHeight = null,
     Object? shoulderWidth = null,
-    Object? chestHeight = null,
+    Object? armLength = null,
     Object? lowerBodyHeight = null,
     Object? waistWidth = null,
-    Object? hipWidth = null,
     Object? shoesSize = null,
   }) {
     return _then(_value.copyWith(
@@ -116,9 +113,9 @@ class _$MySizeInfoCopyWithImpl<$Res, $Val extends MySizeInfo>
           ? _value.shoulderWidth
           : shoulderWidth // ignore: cast_nullable_to_non_nullable
               as double,
-      chestHeight: null == chestHeight
-          ? _value.chestHeight
-          : chestHeight // ignore: cast_nullable_to_non_nullable
+      armLength: null == armLength
+          ? _value.armLength
+          : armLength // ignore: cast_nullable_to_non_nullable
               as double,
       lowerBodyHeight: null == lowerBodyHeight
           ? _value.lowerBodyHeight
@@ -127,10 +124,6 @@ class _$MySizeInfoCopyWithImpl<$Res, $Val extends MySizeInfo>
       waistWidth: null == waistWidth
           ? _value.waistWidth
           : waistWidth // ignore: cast_nullable_to_non_nullable
-              as double,
-      hipWidth: null == hipWidth
-          ? _value.hipWidth
-          : hipWidth // ignore: cast_nullable_to_non_nullable
               as double,
       shoesSize: null == shoesSize
           ? _value.shoesSize
@@ -156,10 +149,9 @@ abstract class _$$MySizeInfoImplCopyWith<$Res>
       double weight,
       double upperBodyHeight,
       double shoulderWidth,
-      double chestHeight,
+      double armLength,
       double lowerBodyHeight,
       double waistWidth,
-      double hipWidth,
       int shoesSize});
 }
 
@@ -181,10 +173,9 @@ class __$$MySizeInfoImplCopyWithImpl<$Res>
     Object? weight = null,
     Object? upperBodyHeight = null,
     Object? shoulderWidth = null,
-    Object? chestHeight = null,
+    Object? armLength = null,
     Object? lowerBodyHeight = null,
     Object? waistWidth = null,
-    Object? hipWidth = null,
     Object? shoesSize = null,
   }) {
     return _then(_$MySizeInfoImpl(
@@ -216,9 +207,9 @@ class __$$MySizeInfoImplCopyWithImpl<$Res>
           ? _value.shoulderWidth
           : shoulderWidth // ignore: cast_nullable_to_non_nullable
               as double,
-      chestHeight: null == chestHeight
-          ? _value.chestHeight
-          : chestHeight // ignore: cast_nullable_to_non_nullable
+      armLength: null == armLength
+          ? _value.armLength
+          : armLength // ignore: cast_nullable_to_non_nullable
               as double,
       lowerBodyHeight: null == lowerBodyHeight
           ? _value.lowerBodyHeight
@@ -227,10 +218,6 @@ class __$$MySizeInfoImplCopyWithImpl<$Res>
       waistWidth: null == waistWidth
           ? _value.waistWidth
           : waistWidth // ignore: cast_nullable_to_non_nullable
-              as double,
-      hipWidth: null == hipWidth
-          ? _value.hipWidth
-          : hipWidth // ignore: cast_nullable_to_non_nullable
               as double,
       shoesSize: null == shoesSize
           ? _value.shoesSize
@@ -245,17 +232,16 @@ class __$$MySizeInfoImplCopyWithImpl<$Res>
 class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
   const _$MySizeInfoImpl(
       {this.name = '',
-      this.age = 0,
+      this.age = 1,
       this.sex = '',
-      this.height = 0.0,
-      this.weight = 0.0,
-      this.upperBodyHeight = 0.0,
-      this.shoulderWidth = 0.0,
-      this.chestHeight = 0.0,
-      this.lowerBodyHeight = 0.0,
-      this.waistWidth = 0.0,
-      this.hipWidth = 0.0,
-      this.shoesSize = 0});
+      this.height = 178.0,
+      this.weight = 68.0,
+      this.upperBodyHeight = 67.2,
+      this.shoulderWidth = 39.2,
+      this.armLength = 58.6,
+      this.lowerBodyHeight = 100.9,
+      this.waistWidth = 25.6,
+      this.shoesSize = 270});
 
   factory _$MySizeInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$MySizeInfoImplFromJson(json);
@@ -285,7 +271,7 @@ class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
   final double shoulderWidth;
   @override
   @JsonKey()
-  final double chestHeight;
+  final double armLength;
 //하의
   @override
   @JsonKey()
@@ -293,9 +279,6 @@ class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
   @override
   @JsonKey()
   final double waistWidth;
-  @override
-  @JsonKey()
-  final double hipWidth;
 //신발
   @override
   @JsonKey()
@@ -303,7 +286,7 @@ class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MySizeInfo(name: $name, age: $age, sex: $sex, height: $height, weight: $weight, upperBodyHeight: $upperBodyHeight, shoulderWidth: $shoulderWidth, chestHeight: $chestHeight, lowerBodyHeight: $lowerBodyHeight, waistWidth: $waistWidth, hipWidth: $hipWidth, shoesSize: $shoesSize)';
+    return 'MySizeInfo(name: $name, age: $age, sex: $sex, height: $height, weight: $weight, upperBodyHeight: $upperBodyHeight, shoulderWidth: $shoulderWidth, armLength: $armLength, lowerBodyHeight: $lowerBodyHeight, waistWidth: $waistWidth, shoesSize: $shoesSize)';
   }
 
   @override
@@ -318,10 +301,9 @@ class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
       ..add(DiagnosticsProperty('weight', weight))
       ..add(DiagnosticsProperty('upperBodyHeight', upperBodyHeight))
       ..add(DiagnosticsProperty('shoulderWidth', shoulderWidth))
-      ..add(DiagnosticsProperty('chestHeight', chestHeight))
+      ..add(DiagnosticsProperty('armLength', armLength))
       ..add(DiagnosticsProperty('lowerBodyHeight', lowerBodyHeight))
       ..add(DiagnosticsProperty('waistWidth', waistWidth))
-      ..add(DiagnosticsProperty('hipWidth', hipWidth))
       ..add(DiagnosticsProperty('shoesSize', shoesSize));
   }
 
@@ -339,14 +321,12 @@ class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
                 other.upperBodyHeight == upperBodyHeight) &&
             (identical(other.shoulderWidth, shoulderWidth) ||
                 other.shoulderWidth == shoulderWidth) &&
-            (identical(other.chestHeight, chestHeight) ||
-                other.chestHeight == chestHeight) &&
+            (identical(other.armLength, armLength) ||
+                other.armLength == armLength) &&
             (identical(other.lowerBodyHeight, lowerBodyHeight) ||
                 other.lowerBodyHeight == lowerBodyHeight) &&
             (identical(other.waistWidth, waistWidth) ||
                 other.waistWidth == waistWidth) &&
-            (identical(other.hipWidth, hipWidth) ||
-                other.hipWidth == hipWidth) &&
             (identical(other.shoesSize, shoesSize) ||
                 other.shoesSize == shoesSize));
   }
@@ -362,10 +342,9 @@ class _$MySizeInfoImpl with DiagnosticableTreeMixin implements _MySizeInfo {
       weight,
       upperBodyHeight,
       shoulderWidth,
-      chestHeight,
+      armLength,
       lowerBodyHeight,
       waistWidth,
-      hipWidth,
       shoesSize);
 
   @JsonKey(ignore: true)
@@ -391,10 +370,9 @@ abstract class _MySizeInfo implements MySizeInfo {
       final double weight,
       final double upperBodyHeight,
       final double shoulderWidth,
-      final double chestHeight,
+      final double armLength,
       final double lowerBodyHeight,
       final double waistWidth,
-      final double hipWidth,
       final int shoesSize}) = _$MySizeInfoImpl;
 
   factory _MySizeInfo.fromJson(Map<String, dynamic> json) =
@@ -415,13 +393,11 @@ abstract class _MySizeInfo implements MySizeInfo {
   @override
   double get shoulderWidth;
   @override
-  double get chestHeight;
+  double get armLength;
   @override //하의
   double get lowerBodyHeight;
   @override
   double get waistWidth;
-  @override
-  double get hipWidth;
   @override //신발
   int get shoesSize;
   @override

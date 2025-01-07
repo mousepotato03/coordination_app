@@ -29,9 +29,9 @@ class UpperBodyInfoPage extends ConsumerWidget {
           isEditMode: isEditMode,
         ),
         CustomTextField(
-          label: "가슴높이 :",
-          field: 'chestHeight',
-          value: mySize.chestHeight.toString(),
+          label: "팔길이 :",
+          field: 'armLength',
+          value: mySize.armLength.toString(),
           unit: "cm",
           isEditMode: isEditMode,
         ),

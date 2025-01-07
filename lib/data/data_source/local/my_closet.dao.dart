@@ -16,6 +16,27 @@ class MyClosetDao {
     );
   }
 
+  Future<ResponseWrapper<MyClothesEntity>> getClothesInfoById(String id) async {
+    final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);
+
+    final myClothesFromId = localDB.get(id);
+
+    if (myClothesFromId == null) {
+      return const ResponseWrapper(
+        status: "FAIL",
+        code: "4004",
+        message: "해당 ID의 옷을 찾을 수 없습니다.",
+      );
+    }
+
+    return ResponseWrapper(
+      status: "SUCCESS",
+      code: "0000",
+      message: "해당 ID의 옷 정보 불러오기 성공",
+      data: myClothesFromId,
+    );
+  }
+
   Future<ResponseWrapper<List<MyClothesEntity>>> addMyClothes(
       MyClothesEntity clothes) async {
     final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);

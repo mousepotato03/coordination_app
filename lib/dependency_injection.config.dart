@@ -14,20 +14,28 @@ import 'package:coordination_app/data/data_source/local/my_closet.dao.dart'
     as _i1010;
 import 'package:coordination_app/data/data_source/local/my_size_info.dao.dart'
     as _i899;
+import 'package:coordination_app/data/repository_impl/avatar.repository.impl.dart'
+    as _i295;
 import 'package:coordination_app/data/repository_impl/my_closet.repository.impl.dart'
     as _i862;
 import 'package:coordination_app/data/repository_impl/my_size_info.repository.impl.dart'
     as _i149;
+import 'package:coordination_app/domain/repository/avatar.repository.dart'
+    as _i441;
 import 'package:coordination_app/domain/repository/my_closet.repository.dart'
     as _i490;
 import 'package:coordination_app/domain/repository/my_size_info.repository.dart'
     as _i27;
+import 'package:coordination_app/domain/usecase/avatar/avatar.usecase.dart'
+    as _i857;
 import 'package:coordination_app/domain/usecase/my_closet/my_closet.usecase.dart'
     as _i314;
 import 'package:coordination_app/domain/usecase/my_size/my_size_info.usecase.dart'
     as _i266;
 import 'package:coordination_app/presentation/main/bottom_sheet/closet/riverpod/closet_provider.dart'
     as _i519;
+import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state_provider.dart'
+    as _i521;
 import 'package:coordination_app/presentation/pages/profile/riverpod/my_size_info_provider.dart'
     as _i952;
 import 'package:get_it/get_it.dart' as _i174;
@@ -47,8 +55,16 @@ extension GetItInjectableX on _i174.GetIt {
     final dataSourceModule = _$DataSourceModule();
     gh.singleton<_i899.MySizeDao>(() => dataSourceModule.mySizeDao);
     gh.singleton<_i1010.MyClosetDao>(() => dataSourceModule.myClosetDao);
+    gh.singleton<_i441.AvatarRepository>(() => _i295.AvatarRepositoryImpl(
+          gh<_i899.MySizeDao>(),
+          gh<_i1010.MyClosetDao>(),
+        ));
     gh.singleton<_i27.MySizeInfoRepository>(
         () => _i149.MySizeInfoRepositoryImpl(gh<_i899.MySizeDao>()));
+    gh.singleton<_i857.AvatarUsecase>(
+        () => _i857.AvatarUsecase(gh<_i441.AvatarRepository>()));
+    gh.factory<_i521.AvatarNotifier>(
+        () => _i521.AvatarNotifier(gh<_i857.AvatarUsecase>()));
     gh.factory<_i490.MyClosetRepository>(
         () => _i862.MyClosetRepositoryImpl(gh<_i1010.MyClosetDao>()));
     gh.singleton<_i266.MySizeInfoUsecase>(
