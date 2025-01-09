@@ -7,7 +7,7 @@ import '../../domain/repository/my_closet.repository.dart';
 import '../data_source/local/my_closet.dao.dart';
 import '../response_wrapper/response_wrapper.dart';
 
-@Injectable(as: MyClosetRepository)
+@Singleton(as: MyClosetRepository)
 class MyClosetRepositoryImpl implements MyClosetRepository {
   final MyClosetDao _myClosetDao;
 

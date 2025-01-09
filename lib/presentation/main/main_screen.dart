@@ -1,12 +1,12 @@
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/presentation/pages/avatar/avatar_page.dart';
 import 'package:coordination_app/presentation/pages/profile/profile_page.dart';
-import 'package:coordination_app/presentation/pages/unknown/unknown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
+import '../pages/login/login.dart';
 import 'bottom_sheet/closet/closet_bottom_sheet.dart';
 import 'riverpod/bottom_nav_controller.dart';
 
@@ -87,7 +87,7 @@ class MainScreen extends ConsumerWidget {
         return const ProfilePage();
       case BottomNav.avatar:
       default:
-        return AvatarPage();
+        return const AvatarPage();
     }
   }
 }

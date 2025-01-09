@@ -65,7 +65,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i857.AvatarUsecase(gh<_i441.AvatarRepository>()));
     gh.factory<_i521.AvatarNotifier>(
         () => _i521.AvatarNotifier(gh<_i857.AvatarUsecase>()));
-    gh.factory<_i490.MyClosetRepository>(
+    gh.singleton<_i490.MyClosetRepository>(
         () => _i862.MyClosetRepositoryImpl(gh<_i1010.MyClosetDao>()));
     gh.singleton<_i266.MySizeInfoUsecase>(
         () => _i266.MySizeInfoUsecase(gh<_i27.MySizeInfoRepository>()));

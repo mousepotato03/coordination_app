@@ -9,7 +9,9 @@ part 'avatar_state.freezed.dart';
 class AvatarState with _$AvatarState {
   const factory AvatarState({
     @Default(Status.initial) Status status,
-    @Default("") String jsonData,
+    @Default("") String bodyInfo,
+    @Default("") String clothesInfo,
+    @Default(false) bool needsRefresh,
     @Default(ErrorResponse()) ErrorResponse error,
   }) = _AvatarState;
 }

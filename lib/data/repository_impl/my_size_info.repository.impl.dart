@@ -23,5 +23,5 @@ class MySizeInfoRepositoryImpl implements MySizeInfoRepository {
   Future<ResponseWrapper<void>> saveMySizeInfo(MySizeInfo mySizeInfo) async {
     final response = await _mySizeDao.saveMySizeInfo(mySizeInfo.toEntity());
     return response.toModel(null);
-  } 
+  }
 }

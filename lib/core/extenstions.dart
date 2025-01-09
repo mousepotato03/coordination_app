@@ -1,3 +1,4 @@
+import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -24,15 +25,18 @@ extension DateTimeEx on DateTime {
 }
 
 extension AvatarControllerEx on UnityWidgetController {
-  void sendBodyInfo(String jsonData) => postMessage(
+  void sendBodyInfoToUnity(String jsonData) => postMessage(
         "Avatar",
         "ApplyBodyParameters",
         jsonData,
       );
 
-  void sendClothes(String jsonData) => postMessage(
-        "Avatar",
-        "ChangeClothing",
-        jsonData,
-      );
+  void sendClothesToUnity(String jsonData) {
+    infoDebugPrint(jsonData);
+    postMessage(
+      "Avatar",
+      "ChangeClothing",
+      jsonData,
+    );
+  }
 }

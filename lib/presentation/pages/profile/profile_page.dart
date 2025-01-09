@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants.dart';
+import '../avatar/riverpod/avatar_state_provider.dart';
 import 'note_paper_pages/note_paper_pages.dart';
 import 'riverpod/my_size_info_provider.dart';
 
@@ -52,8 +53,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 onPressed: () {
                   if (isEditMode) {
                     FocusScope.of(context).unfocus();
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ref.read(mySizeInfoProvider.notifier).saveMySizeInfo();
+                    WidgetsBinding.instance.addPostFrameCallback((_) async {
+                      await ref
+                          .read(mySizeInfoProvider.notifier)
+                          .saveMySizeInfo();
+                      ref.read(avatarStateProvider.notifier).getBodyInfo();
                     });
                   }
                   ref.read(mySizeInfoProvider.notifier).toggleEditMode();

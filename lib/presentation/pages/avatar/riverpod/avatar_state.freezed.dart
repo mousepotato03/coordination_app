@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AvatarState {
   Status get status => throw _privateConstructorUsedError;
-  String get jsonData => throw _privateConstructorUsedError;
+  String get bodyInfo => throw _privateConstructorUsedError;
+  String get clothesInfo => throw _privateConstructorUsedError;
+  bool get needsRefresh => throw _privateConstructorUsedError;
   ErrorResponse get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +33,12 @@ abstract class $AvatarStateCopyWith<$Res> {
           AvatarState value, $Res Function(AvatarState) then) =
       _$AvatarStateCopyWithImpl<$Res, AvatarState>;
   @useResult
-  $Res call({Status status, String jsonData, ErrorResponse error});
+  $Res call(
+      {Status status,
+      String bodyInfo,
+      String clothesInfo,
+      bool needsRefresh,
+      ErrorResponse error});
 }
 
 /// @nodoc
@@ -48,7 +55,9 @@ class _$AvatarStateCopyWithImpl<$Res, $Val extends AvatarState>
   @override
   $Res call({
     Object? status = null,
-    Object? jsonData = null,
+    Object? bodyInfo = null,
+    Object? clothesInfo = null,
+    Object? needsRefresh = null,
     Object? error = null,
   }) {
     return _then(_value.copyWith(
@@ -56,10 +65,18 @@ class _$AvatarStateCopyWithImpl<$Res, $Val extends AvatarState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      jsonData: null == jsonData
-          ? _value.jsonData
-          : jsonData // ignore: cast_nullable_to_non_nullable
+      bodyInfo: null == bodyInfo
+          ? _value.bodyInfo
+          : bodyInfo // ignore: cast_nullable_to_non_nullable
               as String,
+      clothesInfo: null == clothesInfo
+          ? _value.clothesInfo
+          : clothesInfo // ignore: cast_nullable_to_non_nullable
+              as String,
+      needsRefresh: null == needsRefresh
+          ? _value.needsRefresh
+          : needsRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -76,7 +93,12 @@ abstract class _$$AvatarStateImplCopyWith<$Res>
       __$$AvatarStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Status status, String jsonData, ErrorResponse error});
+  $Res call(
+      {Status status,
+      String bodyInfo,
+      String clothesInfo,
+      bool needsRefresh,
+      ErrorResponse error});
 }
 
 /// @nodoc
@@ -91,7 +113,9 @@ class __$$AvatarStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? jsonData = null,
+    Object? bodyInfo = null,
+    Object? clothesInfo = null,
+    Object? needsRefresh = null,
     Object? error = null,
   }) {
     return _then(_$AvatarStateImpl(
@@ -99,10 +123,18 @@ class __$$AvatarStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      jsonData: null == jsonData
-          ? _value.jsonData
-          : jsonData // ignore: cast_nullable_to_non_nullable
+      bodyInfo: null == bodyInfo
+          ? _value.bodyInfo
+          : bodyInfo // ignore: cast_nullable_to_non_nullable
               as String,
+      clothesInfo: null == clothesInfo
+          ? _value.clothesInfo
+          : clothesInfo // ignore: cast_nullable_to_non_nullable
+              as String,
+      needsRefresh: null == needsRefresh
+          ? _value.needsRefresh
+          : needsRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -116,7 +148,9 @@ class __$$AvatarStateImplCopyWithImpl<$Res>
 class _$AvatarStateImpl implements _AvatarState {
   const _$AvatarStateImpl(
       {this.status = Status.initial,
-      this.jsonData = "",
+      this.bodyInfo = "",
+      this.clothesInfo = "",
+      this.needsRefresh = false,
       this.error = const ErrorResponse()});
 
   @override
@@ -124,14 +158,20 @@ class _$AvatarStateImpl implements _AvatarState {
   final Status status;
   @override
   @JsonKey()
-  final String jsonData;
+  final String bodyInfo;
+  @override
+  @JsonKey()
+  final String clothesInfo;
+  @override
+  @JsonKey()
+  final bool needsRefresh;
   @override
   @JsonKey()
   final ErrorResponse error;
 
   @override
   String toString() {
-    return 'AvatarState(status: $status, jsonData: $jsonData, error: $error)';
+    return 'AvatarState(status: $status, bodyInfo: $bodyInfo, clothesInfo: $clothesInfo, needsRefresh: $needsRefresh, error: $error)';
   }
 
   @override
@@ -140,13 +180,18 @@ class _$AvatarStateImpl implements _AvatarState {
         (other.runtimeType == runtimeType &&
             other is _$AvatarStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.jsonData, jsonData) ||
-                other.jsonData == jsonData) &&
+            (identical(other.bodyInfo, bodyInfo) ||
+                other.bodyInfo == bodyInfo) &&
+            (identical(other.clothesInfo, clothesInfo) ||
+                other.clothesInfo == clothesInfo) &&
+            (identical(other.needsRefresh, needsRefresh) ||
+                other.needsRefresh == needsRefresh) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, jsonData, error);
+  int get hashCode => Object.hash(
+      runtimeType, status, bodyInfo, clothesInfo, needsRefresh, error);
 
   @JsonKey(ignore: true)
   @override
@@ -158,13 +203,19 @@ class _$AvatarStateImpl implements _AvatarState {
 abstract class _AvatarState implements AvatarState {
   const factory _AvatarState(
       {final Status status,
-      final String jsonData,
+      final String bodyInfo,
+      final String clothesInfo,
+      final bool needsRefresh,
       final ErrorResponse error}) = _$AvatarStateImpl;
 
   @override
   Status get status;
   @override
-  String get jsonData;
+  String get bodyInfo;
+  @override
+  String get clothesInfo;
+  @override
+  bool get needsRefresh;
   @override
   ErrorResponse get error;
   @override
