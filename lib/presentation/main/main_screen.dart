@@ -26,7 +26,7 @@ class MainScreen extends ConsumerWidget {
                 topLeft: Radius.circular(16.0),
                 topRight: Radius.circular(16.0),
               ),
-              body: AvatarPage(),
+              body: const AvatarPage(),
               panelBuilder: () =>
                   currentNav == BottomNav.values.indexOf(BottomNav.avatar)
                       ? const ClosetBottomSheet()

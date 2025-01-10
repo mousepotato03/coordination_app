@@ -10,14 +10,30 @@ class ClosetBottomSheetAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Stack(
       alignment: Alignment.center,
-      color: AppColors.primary,
-      child: SvgPicture.asset(
-        "$baseIconPath/svg/closet.svg",
-        width: 24,
-        height: 24,
-      ),
+      children: [
+        Container(
+          alignment: Alignment.center,
+          color: AppColors.primary,
+          child: SvgPicture.asset(
+            "$baseIconPath/svg/closet.svg",
+            width: 24,
+            height: 24,
+          ),
+        ),
+        Positioned(
+          top: 5,
+          child: Container(
+            height: 8,
+            width: 30,
+            decoration: BoxDecoration(
+              color: const Color(0x735c5c5c),
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

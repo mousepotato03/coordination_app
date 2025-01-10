@@ -27,20 +27,20 @@ class GetClothesInfoUsecase extends LocalUsecase<AvatarRepository> {
     }
 
     final Map<String, String> clothingData = {
-      '티셔츠': 'keep',
-      '바지': 'keep',
-      '신발': 'keep',
+      'Tshirts': 'keep',
+      'Pants': 'keep',
+      'Shoes': 'keep',
     };
 
     switch (myClothes.category) {
       case ClosetCategory.top:
-        clothingData['티셔츠'] = myClothes.imagePath;
+        clothingData['Tshirts'] = myClothes.imagePath;
         break;
       case ClosetCategory.bottom:
-        clothingData['바지'] = myClothes.imagePath;
+        clothingData['Pants'] = myClothes.imagePath;
         break;
       case ClosetCategory.shoes:
-        clothingData['신발'] = myClothes.imagePath;
+        clothingData['Shoes'] = myClothes.imagePath;
         break;
       default:
         break;

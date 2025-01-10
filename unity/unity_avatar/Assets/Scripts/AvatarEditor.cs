@@ -188,8 +188,7 @@ public class AvatarEditor : MonoBehaviour
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"Error in
-            UpdateBodyParameters: {ex.Message}");
+            Debug.LogError($"Error in UpdateBodyParameters: {ex.Message}");
         }
     }
 

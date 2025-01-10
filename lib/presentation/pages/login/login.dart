@@ -5,6 +5,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(children: [Text("카카오 SDK 로그인 페이지")]);
   }
 }

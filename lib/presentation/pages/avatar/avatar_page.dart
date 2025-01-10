@@ -1,5 +1,4 @@
 import 'package:coordination_app/core/extenstions.dart';
-import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,30 +16,35 @@ class _AvatarPageState extends ConsumerState<AvatarPage> {
 
   @override
   Widget build(BuildContext context) {
+    _addAvatarRefreshListener();
+
+    return Stack(
+      children: [
+        UnityWidget(
+          onUnityCreated: _onUnityCreated,
+        ),
+      ],
+    );
+  }
+
+  void _onUnityCreated(UnityWidgetController controller) async {
+    controller.resume();
+    avatarController = controller;
+
+    await ref.read(avatarStateProvider.notifier).getBodyInfo();
+
+    avatarController
+        ?.sendBodyInfoToUnity(ref.read(avatarStateProvider).bodyInfo);
+  }
+
+  /// AvatarState의 Refresh 필요 여부를 관찰하고, 그에 따라 Unity로 정보를 전달함.
+  void _addAvatarRefreshListener() {
     ref.listen(avatarStateProvider, (prev, next) {
-      infoDebugPrint(prev.toString());
       if (prev?.needsRefresh != next.needsRefresh) {
-        infoDebugPrint(avatarController.toString());
         avatarController
             ?.sendClothesToUnity(ref.read(avatarStateProvider).clothesInfo);
         ref.read(avatarStateProvider.notifier).resetRefreshState();
       }
     });
-
-    return Stack(
-      children: [
-        UnityWidget(
-          onUnityCreated: (controller) async {
-            controller.resume();
-            avatarController = controller;
-
-            await ref.read(avatarStateProvider.notifier).getBodyInfo();
-
-            avatarController
-                ?.sendBodyInfoToUnity(ref.read(avatarStateProvider).bodyInfo);
-          },
-        ),
-      ],
-    );
   }
 }
