@@ -57,19 +57,19 @@ public class AvatarEditor : MonoBehaviour
             // JSON 데이터 파싱
             Dictionary<string, string> clothingData = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonData);
 
-            if (clothingData.ContainsKey("티셔츠") && tshirtMesh != null)
+            if (clothingData.ContainsKey("tshirts") && tshirtMesh != null)
             {
-                HandleClothingChange(tshirtMesh, clothingData["티셔츠"]);
+                HandleClothingChange(tshirtMesh, clothingData["tshirts"]);
             }
 
-            if (clothingData.ContainsKey("바지") && pantsMesh != null)
+            if (clothingData.ContainsKey("pants") && pantsMesh != null)
             {
-                HandleClothingChange(pantsMesh, clothingData["바지"]);
+                HandleClothingChange(pantsMesh, clothingData["pants"]);
             }
 
-            if (clothingData.ContainsKey("신발") && shoesMesh != null)
+            if (clothingData.ContainsKey("shoes") && shoesMesh != null)
             {
-                HandleClothingChange(shoesMesh, clothingData["신발"]);
+                HandleClothingChange(shoesMesh, clothingData["shoes"]);
             }
         }
         catch (System.Exception ex)
