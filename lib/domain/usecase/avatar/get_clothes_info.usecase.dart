@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:coordination_app/core/extenstions.dart';
 import 'package:coordination_app/core/utils/error/error_response.dart';
 import 'package:coordination_app/domain/model/common/result.dart';
@@ -27,25 +29,25 @@ class GetClothesInfoUsecase extends LocalUsecase<AvatarRepository> {
     }
 
     final Map<String, String> clothingData = {
-      'Tshirts': 'keep',
-      'Pants': 'keep',
-      'Shoes': 'keep',
+      'tshirts': 'keep',
+      'pants': 'keep',
+      'shoes': 'keep',
     };
 
     switch (myClothes.category) {
       case ClosetCategory.top:
-        clothingData['Tshirts'] = myClothes.imagePath;
+        clothingData['tshirts'] = myClothes.imagePath;
         break;
       case ClosetCategory.bottom:
-        clothingData['Pants'] = myClothes.imagePath;
+        clothingData['pants'] = myClothes.imagePath;
         break;
       case ClosetCategory.shoes:
-        clothingData['Shoes'] = myClothes.imagePath;
+        clothingData['shoes'] = myClothes.imagePath;
         break;
       default:
         break;
     }
 
-    return Result.success(clothingData);
+    return Result.success(jsonEncode(clothingData));
   }
 }
