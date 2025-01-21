@@ -53,8 +53,9 @@ dependencies:
 
   dio: ^5.7.0
   image_picker: ^1.1.2
-  timeago: ^3.7.0
   intl: ^0.19.0
+  retrofit:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ dev_dependencies:
     git:
       url: https://github.com/juicycleff/flutter-unity-view-widget.git
       ref: experimental/unity_6000 # branch name
+  retrofit_generator:
 
 
 # For information on the generic Dart part of this file, see the

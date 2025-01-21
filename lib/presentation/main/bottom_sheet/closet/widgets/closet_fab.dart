@@ -40,7 +40,7 @@ class _CustomFABState extends ConsumerState<ClosetFAB> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 isExpanded
-                    ? _buildExpandedColumn(context)
+                    ? _buildExpandedMenu(context)
                     : _buildDeleteButton(ref),
                 const SizedBox(height: 8),
                 _buildAddButton(),
@@ -96,7 +96,7 @@ class _CustomFABState extends ConsumerState<ClosetFAB> {
     );
   }
 
-  Widget _buildExpandedColumn(BuildContext context) {
+  Widget _buildExpandedMenu(BuildContext context) {
     return Container(
       width: 120,
       padding: const EdgeInsets.all(15),

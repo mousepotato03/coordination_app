@@ -58,7 +58,7 @@ class _ClothesCardState extends ConsumerState<ClothesCard> {
                   scale: 1.3,
                   child: Checkbox(
                     value: isSelected,
-                    fillColor: MaterialStateProperty.all(AppColors.negative),
+                    fillColor: WidgetStateProperty.all(AppColors.negative),
                     onChanged: (bool? value) {
                       setState(() {
                         isSelected = value ?? false;

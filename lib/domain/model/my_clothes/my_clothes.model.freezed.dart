@@ -22,6 +22,8 @@ MyClothes _$MyClothesFromJson(Map<String, dynamic> json) {
 mixin _$MyClothes {
   String get id => throw _privateConstructorUsedError;
   String get imagePath => throw _privateConstructorUsedError;
+  String? get uvMapPath => throw _privateConstructorUsedError;
+  String? get mainColor => throw _privateConstructorUsedError;
   ClosetCategory get category => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get memo => throw _privateConstructorUsedError;
@@ -40,6 +42,8 @@ abstract class $MyClothesCopyWith<$Res> {
   $Res call(
       {String id,
       String imagePath,
+      String? uvMapPath,
+      String? mainColor,
       ClosetCategory category,
       String createdAt,
       String memo});
@@ -60,6 +64,8 @@ class _$MyClothesCopyWithImpl<$Res, $Val extends MyClothes>
   $Res call({
     Object? id = null,
     Object? imagePath = null,
+    Object? uvMapPath = freezed,
+    Object? mainColor = freezed,
     Object? category = null,
     Object? createdAt = null,
     Object? memo = null,
@@ -73,6 +79,14 @@ class _$MyClothesCopyWithImpl<$Res, $Val extends MyClothes>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
+      uvMapPath: freezed == uvMapPath
+          ? _value.uvMapPath
+          : uvMapPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainColor: freezed == mainColor
+          ? _value.mainColor
+          : mainColor // ignore: cast_nullable_to_non_nullable
+              as String?,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -100,6 +114,8 @@ abstract class _$$MyClothesImplCopyWith<$Res>
   $Res call(
       {String id,
       String imagePath,
+      String? uvMapPath,
+      String? mainColor,
       ClosetCategory category,
       String createdAt,
       String memo});
@@ -118,6 +134,8 @@ class __$$MyClothesImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? imagePath = null,
+    Object? uvMapPath = freezed,
+    Object? mainColor = freezed,
     Object? category = null,
     Object? createdAt = null,
     Object? memo = null,
@@ -131,6 +149,14 @@ class __$$MyClothesImplCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
+      uvMapPath: freezed == uvMapPath
+          ? _value.uvMapPath
+          : uvMapPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainColor: freezed == mainColor
+          ? _value.mainColor
+          : mainColor // ignore: cast_nullable_to_non_nullable
+              as String?,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -149,10 +175,12 @@ class __$$MyClothesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MyClothesImpl with DiagnosticableTreeMixin implements _MyClothes {
+class _$MyClothesImpl implements _MyClothes {
   const _$MyClothesImpl(
       {required this.id,
       required this.imagePath,
+      this.uvMapPath,
+      this.mainColor,
       required this.category,
       required this.createdAt,
       this.memo = ''});
@@ -165,6 +193,10 @@ class _$MyClothesImpl with DiagnosticableTreeMixin implements _MyClothes {
   @override
   final String imagePath;
   @override
+  final String? uvMapPath;
+  @override
+  final String? mainColor;
+  @override
   final ClosetCategory category;
   @override
   final String createdAt;
@@ -173,20 +205,8 @@ class _$MyClothesImpl with DiagnosticableTreeMixin implements _MyClothes {
   final String memo;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MyClothes(id: $id, imagePath: $imagePath, category: $category, createdAt: $createdAt, memo: $memo)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'MyClothes'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('imagePath', imagePath))
-      ..add(DiagnosticsProperty('category', category))
-      ..add(DiagnosticsProperty('createdAt', createdAt))
-      ..add(DiagnosticsProperty('memo', memo));
+  String toString() {
+    return 'MyClothes(id: $id, imagePath: $imagePath, uvMapPath: $uvMapPath, mainColor: $mainColor, category: $category, createdAt: $createdAt, memo: $memo)';
   }
 
   @override
@@ -197,6 +217,10 @@ class _$MyClothesImpl with DiagnosticableTreeMixin implements _MyClothes {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
+            (identical(other.uvMapPath, uvMapPath) ||
+                other.uvMapPath == uvMapPath) &&
+            (identical(other.mainColor, mainColor) ||
+                other.mainColor == mainColor) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.createdAt, createdAt) ||
@@ -206,8 +230,8 @@ class _$MyClothesImpl with DiagnosticableTreeMixin implements _MyClothes {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, imagePath, category, createdAt, memo);
+  int get hashCode => Object.hash(runtimeType, id, imagePath, uvMapPath,
+      mainColor, category, createdAt, memo);
 
   @JsonKey(ignore: true)
   @override
@@ -227,6 +251,8 @@ abstract class _MyClothes implements MyClothes {
   const factory _MyClothes(
       {required final String id,
       required final String imagePath,
+      final String? uvMapPath,
+      final String? mainColor,
       required final ClosetCategory category,
       required final String createdAt,
       final String memo}) = _$MyClothesImpl;
@@ -238,6 +264,10 @@ abstract class _MyClothes implements MyClothes {
   String get id;
   @override
   String get imagePath;
+  @override
+  String? get uvMapPath;
+  @override
+  String? get mainColor;
   @override
   ClosetCategory get category;
   @override

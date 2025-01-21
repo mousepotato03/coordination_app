@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -37,11 +38,16 @@ public class AvatarEditor : MonoBehaviour
     public GameObject pantsMesh;
     public GameObject shoesMesh;
 
+    private string tshirtColor;
+    private string pantsColor;
+    private string shoesColor;
+
+
     private void Start()
     {
         InitializeClothingMeshes();
     }
-
+    
     // Clothes Logic 
     private void InitializeClothingMeshes()
     {
@@ -55,21 +61,30 @@ public class AvatarEditor : MonoBehaviour
         try
         {
             // JSON 데이터 파싱
-            Dictionary<string, string> clothingData = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonData);
+            Dictionary<string, Dictionary<string, string>> clothingData = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(jsonData);
 
             if (clothingData.ContainsKey("tshirts") && tshirtMesh != null)
             {
-                HandleClothingChange(tshirtMesh, clothingData["tshirts"]);
+                var tshirtInfo = clothingData["tshirts"];
+                string uvPath = tshirtInfo.ContainsKey("uv") ? tshirtInfo["uv"] : null;
+                string mainColorHex = tshirtInfo.ContainsKey("main_color") ? tshirtInfo["main_color"] : null;
+                HandleClothingChange(tshirtMesh, uvPath, mainColorHex);
             }
 
             if (clothingData.ContainsKey("pants") && pantsMesh != null)
             {
-                HandleClothingChange(pantsMesh, clothingData["pants"]);
+                var pantsInfo = clothingData["pants"];
+                string uvPath = pantsInfo.ContainsKey("uv") ? pantsInfo["uv"] : null;
+                string mainColorHex = pantsInfo.ContainsKey("main_color") ? pantsInfo["main_color"] : null;
+                HandleClothingChange(pantsMesh, uvPath, mainColorHex);
             }
 
             if (clothingData.ContainsKey("shoes") && shoesMesh != null)
             {
-                HandleClothingChange(shoesMesh, clothingData["shoes"]);
+                var shoesInfo = clothingData["shoes"];
+                string uvPath = shoesInfo.ContainsKey("uv") ? shoesInfo["uv"] : null;
+                string mainColorHex = shoesInfo.ContainsKey("main_color") ? shoesInfo["main_color"] : null;
+                HandleClothingChange(shoesMesh, uvPath, mainColorHex);
             }
         }
         catch (System.Exception ex)
@@ -78,26 +93,30 @@ public class AvatarEditor : MonoBehaviour
         }
     }
 
-    private void HandleClothingChange(GameObject meshObject, string command)
+    private void HandleClothingChange(GameObject meshObject, string uvPath, string mainColorHex)
     {
-        if (command == "delete")
+        if (uvPath == "delete")
         {
             meshObject.SetActive(false);
             Debug.Log($"Disabled mesh: {meshObject.name}");
         }
-        else if (command == "keep")
+        else if (uvPath == "keep")
         {
             Debug.Log($"Keeping current state of mesh: {meshObject.name}");
         }
         else
         {
-            // UV 텍스처 적용
-            ApplyTextureToMesh(meshObject, command);
+            Color color = Color.white;
+            if (!string.IsNullOrEmpty(mainColorHex))
+            {
+                ColorUtility.TryParseHtmlString(mainColorHex, out color);
+            }
+            ApplyTextureToMesh(meshObject, uvPath, color);
             meshObject.SetActive(true); // 활성화
         }
     }
 
-    private void ApplyTextureToMesh(GameObject meshObject, string texturePath)
+    private void ApplyTextureToMesh(GameObject meshObject, string texturePath, Color color)
     {
         var renderer = meshObject.GetComponent<SkinnedMeshRenderer>();
 
@@ -107,18 +126,25 @@ public class AvatarEditor : MonoBehaviour
             return;
         }
 
-        Material material = renderer.materials[0]; // Element 0 Material
-
-        // 텍스처 로드 및 Material 적용
+        // 첫 번째 material에 텍스처 적용
+        Material firstMaterial = renderer.materials[0];
         Texture2D texture = LoadTextureFromPath(texturePath);
         if (texture != null)
         {
-            material.mainTexture = texture;
+            firstMaterial.mainTexture = texture;
             Debug.Log($"Applied texture to {meshObject.name}: {texturePath}");
         }
         else
         {
-            Debug.LogWarning($"Failed to load texture from path: {texturePath}");
+            firstMaterial.color = color;
+            Debug.LogWarning($"Failed to load texture from path: {texturePath}. Applied color instead: {color}");
+        }
+
+        // 나머지 materials에 색상 적용
+        for (int i = 1; i < renderer.materials.Length; i++)
+        {
+            renderer.materials[i].color = color;
+            Debug.Log($"Applied color to {meshObject.name} material[{i}]: {color}");
         }
     }
 

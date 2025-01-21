@@ -8,6 +8,8 @@ extension MyClothesEx on MyClothes {
     return MyClothesEntity(
       id: id,
       imagePath: imagePath,
+      uvMapPath: uvMapPath,
+      mainColor: mainColor,
       category: category.name,
       createdAt: createdAt,
       memo: memo,
@@ -21,6 +23,8 @@ extension MyClothesEntityEX on MyClothesEntity {
     return MyClothes(
       id: id,
       imagePath: imagePath,
+      uvMapPath: uvMapPath,
+      mainColor: mainColor,
       category: ClosetCategory.values.firstWhere((e) => e.name == category),
       createdAt: createdAt,
       memo: memo,

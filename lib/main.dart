@@ -12,7 +12,6 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(MySizeInfoEntityAdapter());
   Hive.registerAdapter(MyClothesEntityAdapter());
-
   //의존성 주입
   configureDependencies();
 

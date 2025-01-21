@@ -1,4 +1,4 @@
-import 'package:coordination_app/core/extenstions.dart';
+import 'package:coordination_app/core/extensions.dart';
 
 import '../../../core/utils/error/error_response.dart';
 import '../../model/common/result.dart';

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:coordination_app/core/extenstions.dart';
+import 'package:coordination_app/core/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +11,7 @@ import 'riverpod/closet_provider.dart';
 
 class ClothesDetailPage extends ConsumerStatefulWidget {
   final String imagePath;
+
   const ClothesDetailPage({super.key, required this.imagePath});
 
   @override
@@ -103,8 +104,8 @@ class _ClothesDetailPageState extends ConsumerState<ClothesDetailPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                 ),
-                onPressed: () {
-                  ref.read(closetProvider.notifier).addMyClothes(
+                onPressed: () async {
+                  await ref.read(closetProvider.notifier).addMyClothes(
                         imagePath: widget.imagePath,
                         category: selectedCategory,
                         createdAt: currentDate,

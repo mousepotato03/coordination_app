@@ -2,19 +2,17 @@ import 'package:coordination_app/core/extensions.dart';
 
 import '../../../core/utils/error/error_response.dart';
 import '../../model/common/result.dart';
-import '../../model/my_clothes/my_clothes.model.dart';
 import '../../repository/my_closet.repository.dart';
 import '../base/local.usecase.dart';
 
-class AddMyClothesUsecase extends LocalUsecase<MyClosetRepository> {
-  final MyClothes clothes;
+class GetUVmapUsecase extends LocalUsecase<MyClosetRepository> {
+  final String imagePath;
 
-  AddMyClothesUsecase(this.clothes);
+  GetUVmapUsecase(this.imagePath);
 
   @override
   Future call(MyClosetRepository repository) async {
-    final result = await repository.addMyClothes(clothes);
-
+    final result = await repository.convertTshirts2UVmap(imagePath);
     return result.status.isSuccess
         ? Result.success(result.data)
         : Result.failure(

@@ -1,3 +1,4 @@
+import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 import 'package:coordination_app/domain/usecase/avatar/avatar.usecase.dart';
 import 'package:coordination_app/domain/usecase/avatar/get_body_info.usecase.dart';
@@ -69,6 +70,26 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
         error: CommonException.setError(e),
       );
     }
+  }
+
+  void clearClothes() {
+    if (state.clothesInfo.isEmpty) {
+      errorDebugPrint("지울거 없음");
+      state = state.copyWith(status: Status.error);
+      return;
+    }
+
+    final Map<String, String> delete = {
+      'tshirts': 'delete',
+      'pants': 'delete',
+      'shoes': 'delete',
+    };
+    errorDebugPrint("옷 벗김 ㅇㅇ;");
+    state = state.copyWith(
+      status: Status.success,
+      clothesInfo: delete.toString(),
+      needsRefresh: true,
+    );
   }
 
   void resetRefreshState() {

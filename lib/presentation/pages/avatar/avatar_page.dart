@@ -1,4 +1,4 @@
-import 'package:coordination_app/core/extenstions.dart';
+import 'package:coordination_app/core/extensions.dart';
 import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,6 +22,7 @@ class _AvatarPageState extends ConsumerState<AvatarPage> {
       children: [
         UnityWidget(
           onUnityCreated: _onUnityCreated,
+          printSetupLog: false,
         ),
       ],
     );

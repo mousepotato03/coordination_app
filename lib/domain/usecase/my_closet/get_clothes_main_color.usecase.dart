@@ -1,20 +1,21 @@
 import 'package:coordination_app/core/extensions.dart';
 
 import '../../../core/utils/error/error_response.dart';
+import '../../../presentation/main/bottom_sheet/closet/closet_category.dart';
 import '../../model/common/result.dart';
-import '../../model/my_clothes/my_clothes.model.dart';
 import '../../repository/my_closet.repository.dart';
 import '../base/local.usecase.dart';
 
-class AddMyClothesUsecase extends LocalUsecase<MyClosetRepository> {
-  final MyClothes clothes;
+class GetClothesMainColorUsecase extends LocalUsecase<MyClosetRepository> {
+  final ClosetCategory imageCategory;
+  final String imagePath;
 
-  AddMyClothesUsecase(this.clothes);
+  GetClothesMainColorUsecase(
+      {required this.imageCategory, required this.imagePath});
 
   @override
   Future call(MyClosetRepository repository) async {
-    final result = await repository.addMyClothes(clothes);
-
+    final result = await repository.exportMainColor(imageCategory, imagePath);
     return result.status.isSuccess
         ? Result.success(result.data)
         : Result.failure(

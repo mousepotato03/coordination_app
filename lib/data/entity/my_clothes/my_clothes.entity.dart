@@ -11,17 +11,25 @@ class MyClothesEntity extends HiveObject {
   final String imagePath;
 
   @HiveField(2)
-  final String category;
+  final String? uvMapPath;
 
   @HiveField(3)
+  final String? mainColor;
+
+  @HiveField(4)
+  final String category;
+
+  @HiveField(5)
   final String createdAt;
 
-  @HiveField(4, defaultValue: '')
+  @HiveField(6, defaultValue: '')
   final String memo;
 
   MyClothesEntity({
     required this.id,
     required this.imagePath,
+    this.uvMapPath,
+    this.mainColor,
     required this.category,
     required this.createdAt,
     this.memo = '',

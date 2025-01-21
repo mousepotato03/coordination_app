@@ -10,6 +10,8 @@ _$MyClothesImpl _$$MyClothesImplFromJson(Map<String, dynamic> json) =>
     _$MyClothesImpl(
       id: json['id'] as String,
       imagePath: json['imagePath'] as String,
+      uvMapPath: json['uvMapPath'] as String?,
+      mainColor: json['mainColor'] as String?,
       category: $enumDecode(_$ClosetCategoryEnumMap, json['category']),
       createdAt: json['createdAt'] as String,
       memo: json['memo'] as String? ?? '',
@@ -19,6 +21,8 @@ Map<String, dynamic> _$$MyClothesImplToJson(_$MyClothesImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'imagePath': instance.imagePath,
+      'uvMapPath': instance.uvMapPath,
+      'mainColor': instance.mainColor,
       'category': _$ClosetCategoryEnumMap[instance.category]!,
       'createdAt': instance.createdAt,
       'memo': instance.memo,
@@ -27,6 +31,5 @@ Map<String, dynamic> _$$MyClothesImplToJson(_$MyClothesImpl instance) =>
 const _$ClosetCategoryEnumMap = {
   ClosetCategory.top: 'top',
   ClosetCategory.bottom: 'bottom',
-  ClosetCategory.outer: 'outer',
   ClosetCategory.shoes: 'shoes',
 };

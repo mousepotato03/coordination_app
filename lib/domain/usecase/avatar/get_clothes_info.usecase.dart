@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-import 'package:coordination_app/core/extenstions.dart';
-import 'package:coordination_app/core/utils/error/error_response.dart';
-import 'package:coordination_app/domain/model/common/result.dart';
-import 'package:coordination_app/domain/repository/avatar.repository.dart';
+import 'package:coordination_app/core/extensions.dart';
+import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 
+import '../../../core/utils/error/error_response.dart';
 import '../../../presentation/main/bottom_sheet/closet/closet_category.dart';
+import '../../model/common/result.dart';
 import '../../model/my_clothes/my_clothes.model.dart';
+import '../../repository/avatar.repository.dart';
 import '../base/local.usecase.dart';
 
 class GetClothesInfoUsecase extends LocalUsecase<AvatarRepository> {
@@ -28,21 +29,33 @@ class GetClothesInfoUsecase extends LocalUsecase<AvatarRepository> {
       );
     }
 
-    final Map<String, String> clothingData = {
-      'tshirts': 'keep',
-      'pants': 'keep',
-      'shoes': 'keep',
+    // Unity 코드의 Dictionary<string, Dictionary<string, string>> 구조에 맞춤
+    final Map<String, Map<String, String>> clothingData = {
+      'tshirts': {'uv': 'keep', 'main_color': ''},
+      'pants': {'uv': 'keep', 'main_color': ''},
+      'shoes': {'uv': 'keep', 'main_color': ''},
     };
+
+    infoDebugPrint("${myClothes}");
 
     switch (myClothes.category) {
       case ClosetCategory.top:
-        clothingData['tshirts'] = myClothes.imagePath;
+        clothingData['tshirts'] = {
+          'uv': myClothes.uvMapPath ?? 'null',
+          'main_color': myClothes.mainColor ?? '',
+        };
         break;
       case ClosetCategory.bottom:
-        clothingData['pants'] = myClothes.imagePath;
+        clothingData['pants'] = {
+          'uv': myClothes.uvMapPath ?? 'null',
+          'main_color': myClothes.mainColor ?? '',
+        };
         break;
       case ClosetCategory.shoes:
-        clothingData['shoes'] = myClothes.imagePath;
+        clothingData['shoes'] = {
+          'uv': myClothes.uvMapPath ?? 'null',
+          'main_color': myClothes.mainColor ?? '',
+        };
         break;
       default:
         break;

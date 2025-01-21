@@ -1,4 +1,4 @@
-import 'package:coordination_app/core/extenstions.dart';
+import 'package:coordination_app/core/extensions.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 
 import '../../../core/utils/error/error_response.dart';

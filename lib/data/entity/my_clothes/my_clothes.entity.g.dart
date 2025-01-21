@@ -19,25 +19,31 @@ class MyClothesEntityAdapter extends TypeAdapter<MyClothesEntity> {
     return MyClothesEntity(
       id: fields[0] as String,
       imagePath: fields[1] as String,
-      category: fields[2] as String,
-      createdAt: fields[3] as String,
-      memo: fields[4] == null ? '' : fields[4] as String,
+      uvMapPath: fields[2] as String?,
+      mainColor: fields[3] as String?,
+      category: fields[4] as String,
+      createdAt: fields[5] as String,
+      memo: fields[6] == null ? '' : fields[6] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, MyClothesEntity obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.imagePath)
       ..writeByte(2)
-      ..write(obj.category)
+      ..write(obj.uvMapPath)
       ..writeByte(3)
-      ..write(obj.createdAt)
+      ..write(obj.mainColor)
       ..writeByte(4)
+      ..write(obj.category)
+      ..writeByte(5)
+      ..write(obj.createdAt)
+      ..writeByte(6)
       ..write(obj.memo);
   }
 

@@ -1,3 +1,6 @@
+import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
+import 'package:coordination_app/domain/usecase/my_closet/get_clothes_main_color.usecase.dart';
+import 'package:coordination_app/domain/usecase/my_closet/get_uv_map.usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injectable/injectable.dart';
 
@@ -54,15 +57,22 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
   }) async {
     state = state.copyWith(status: Status.loading);
 
-    final newClothes = MyClothes(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      imagePath: imagePath,
-      category: category,
-      createdAt: createdAt,
-      memo: memo,
-    );
-
     try {
+      final uvMapPath = await getClothesUV(imagePath);
+      final mainColor = await getMainColor(category, imagePath);
+
+      infoDebugPrint("${uvMapPath}, ${mainColor}");
+
+      final newClothes = MyClothes(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        imagePath: imagePath,
+        category: category,
+        uvMapPath: uvMapPath,
+        mainColor: mainColor,
+        createdAt: createdAt,
+        memo: memo,
+      );
+
       final response = await _myClosetUsecase.execute(
         usecase: AddMyClothesUsecase(newClothes),
       );
@@ -154,5 +164,58 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
         error: CommonException.setError(e),
       );
     }
+  }
+
+  Future<String?> getClothesUV(String imagePath) async {
+    state = state.copyWith(status: Status.loading);
+
+    try {
+      final response =
+          await _myClosetUsecase.execute(usecase: GetUVmapUsecase(imagePath));
+      return response.when(
+        success: (data) {
+          infoDebugPrint("${data}");
+          return data;
+        },
+        failure: (error) {
+          return "";
+        },
+      );
+    } catch (e) {
+      CustomLogger.logger.e(e);
+      state = state.copyWith(
+        status: Status.error,
+        error: CommonException.setError(e),
+      );
+    }
+    return null;
+  }
+
+  Future<String?> getMainColor(
+    ClosetCategory category,
+    String imagePath,
+  ) async {
+    state = state.copyWith(status: Status.loading);
+
+    try {
+      final response = await _myClosetUsecase.execute(
+          usecase: GetClothesMainColorUsecase(
+              imageCategory: category, imagePath: imagePath));
+      return response.when(
+        success: (data) {
+          return data;
+        },
+        failure: (error) {
+          return "";
+        },
+      );
+    } catch (e) {
+      CustomLogger.logger.e(e);
+      state = state.copyWith(
+        status: Status.error,
+        error: CommonException.setError(e),
+      );
+    }
+    return null;
   }
 }

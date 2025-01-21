@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../presentation/main/bottom_sheet/closet/closet_category.dart';
@@ -11,6 +10,8 @@ class MyClothes with _$MyClothes {
   const factory MyClothes({
     required String id,
     required String imagePath,
+    String? uvMapPath,
+    String? mainColor,
     required ClosetCategory category,
     required String createdAt,
     @Default('') String memo,
