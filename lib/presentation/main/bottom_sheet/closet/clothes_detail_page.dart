@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:coordination_app/core/extensions.dart';
+import 'package:coordination_app/core/utils/dialog/common_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -105,6 +106,12 @@ class _ClothesDetailPageState extends ConsumerState<ClothesDetailPage> {
                   backgroundColor: AppColors.primary,
                 ),
                 onPressed: () async {
+                  CommonDialog.loadingDialog(
+                    context,
+                    "이미지 처리 중입니다.",
+                    "다소 시간이 소요될 수 있습니다",
+                  );
+
                   await ref.read(closetProvider.notifier).addMyClothes(
                         imagePath: widget.imagePath,
                         category: selectedCategory,
@@ -112,7 +119,8 @@ class _ClothesDetailPageState extends ConsumerState<ClothesDetailPage> {
                         memo: _descriptionController.text,
                       );
                   if (context.mounted) {
-                    context.pop();
+                    context.pop(); //dialog
+                    context.pop(); //this page
                   }
                 },
                 child: const SizedBox(

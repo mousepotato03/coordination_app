@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state_provider.dart';
 import 'package:flutter/material.dart';
@@ -113,6 +114,41 @@ class CommonDialog {
               child: const Text('확인'),
             ),
           ],
+        );
+      },
+    );
+  }
+
+  static Future<void> loadingDialog(
+    BuildContext context,
+    String title,
+    String content,
+  ) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(height: 16),
+              const CircularProgressIndicator(),
+              const SizedBox(height: 16),
+              Text(
+                content,
+                style: const TextStyle(
+                  color: AppColors.unimportant,
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
