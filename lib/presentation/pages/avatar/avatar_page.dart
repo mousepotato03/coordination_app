@@ -1,5 +1,6 @@
 import 'package:coordination_app/core/extensions.dart';
 import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state_provider.dart';
+import 'package:coordination_app/presentation/pages/avatar/widgets/avatar_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
@@ -19,11 +20,22 @@ class _AvatarPageState extends ConsumerState<AvatarPage> {
     _addAvatarRefreshListener();
 
     return Stack(
+      alignment: Alignment.centerRight,
       children: [
         UnityWidget(
           onUnityCreated: _onUnityCreated,
           printSetupLog: false,
+          runImmediately: true,
         ),
+        const Positioned(
+          right: 10,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AvatarFab(),
+            ],
+          ),
+        )
       ],
     );
   }

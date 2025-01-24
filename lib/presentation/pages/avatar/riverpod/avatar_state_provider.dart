@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 import 'package:coordination_app/domain/usecase/avatar/avatar.usecase.dart';
@@ -79,15 +81,15 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
       return;
     }
 
-    final Map<String, String> delete = {
-      'tshirts': 'delete',
-      'pants': 'delete',
-      'shoes': 'delete',
+    final Map<String, Map<String, String>> clothingData = {
+      'tshirts': {'uv': 'delete', 'main_color': ''},
+      'pants': {'uv': 'delete', 'main_color': ''},
+      'shoes': {'uv': 'delete', 'main_color': ''},
     };
     errorDebugPrint("옷 벗김 ㅇㅇ;");
     state = state.copyWith(
       status: Status.success,
-      clothesInfo: delete.toString(),
+      clothesInfo: jsonEncode(clothingData).toString(),
       needsRefresh: true,
     );
   }

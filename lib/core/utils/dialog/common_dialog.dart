@@ -83,4 +83,38 @@ class CommonDialog {
       },
     );
   }
+
+  static Future<bool?> takeOffClothesDialog(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: const Text(
+            "착용된 아이템들을 해제할까요?",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => context.pop(true),
+              child: const Text('취소'),
+            ),
+            TextButton(
+              onPressed: () async {
+                ref.read(avatarStateProvider.notifier).clearClothes();
+                if (context.mounted) {
+                  context.pop(true);
+                }
+              },
+              child: const Text('확인'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
