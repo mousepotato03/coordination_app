@@ -12,7 +12,6 @@ import '../../../../../domain/model/my_clothes/my_clothes.model.dart';
 import '../../../../../domain/usecase/my_closet/add_my_clothes.usecase.dart';
 import '../../../../../domain/usecase/my_closet/delete_my_clothes.usecase.dart';
 import '../../../../../domain/usecase/my_closet/get_my_closet.usecase.dart';
-import '../../../../../domain/usecase/my_closet/modify_my_clothes.usecase.dart';
 import '../../../../../domain/usecase/my_closet/my_closet.usecase.dart';
 import '../closet_category.dart';
 import 'closet_state.dart';
@@ -143,29 +142,6 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
       selectedClothesIds:
           state.selectedClothesIds.where((item) => item != id).toList(),
     );
-  }
-
-  Future<void> modifyMyClothes(MyClothes clothes) async {
-    state = state.copyWith(status: Status.loading);
-    try {
-      final response = await _myClosetUsecase.execute(
-        usecase: ModifyMyClothesUsecase(clothes.id, clothes),
-      );
-      response.when(
-        success: (data) {
-          state = state.copyWith(status: Status.success);
-        },
-        failure: (error) {
-          state = state.copyWith(status: Status.error, error: error);
-        },
-      );
-    } catch (e) {
-      CustomLogger.logger.e(e);
-      state = state.copyWith(
-        status: Status.error,
-        error: CommonException.setError(e),
-      );
-    }
   }
 
   Future<String?> getClothesUV(String imagePath) async {

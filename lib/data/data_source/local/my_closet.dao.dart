@@ -62,26 +62,4 @@ class MyClosetDao {
       data: localDB.values.toList(),
     );
   }
-
-  Future<ResponseWrapper<List<MyClothesEntity>>> modifyMyClothes(
-      String id, MyClothesEntity clothes) async {
-    final localDB = await Hive.openBox<MyClothesEntity>(_myClosetDb);
-    // 존재하지 않는 옷일 경우 예외처리
-    if (!localDB.containsKey(id)) {
-      return const ResponseWrapper(
-        status: "FAIL",
-        code: "4004",
-        message: "존재하지 않는 옷입니다",
-      );
-    }
-
-    await localDB.put(id, clothes);
-
-    return ResponseWrapper(
-      status: "SUCCESS",
-      code: "0000",
-      message: "내 옷장 수정 완료",
-      data: localDB.values.toList(),
-    );
-  }
 }

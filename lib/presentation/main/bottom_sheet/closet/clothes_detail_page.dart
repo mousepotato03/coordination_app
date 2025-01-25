@@ -126,7 +126,14 @@ class _ClothesDetailPageState extends ConsumerState<ClothesDetailPage> {
                 child: const SizedBox(
                   width: 100,
                   height: 35,
-                  child: Center(child: Text("저장하기")),
+                  child: Center(
+                      child: Text(
+                    "저장하기",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  )),
                 ),
               ),
             ],

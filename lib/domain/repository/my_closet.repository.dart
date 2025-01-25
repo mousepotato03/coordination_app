@@ -10,11 +10,6 @@ abstract class MyClosetRepository extends Repository {
 
   Future<ResponseWrapper<List<MyClothes>>> deleteMyClothes(List<String> ids);
 
-  Future<ResponseWrapper<List<MyClothes>>> modifyMyClothes(
-    String id,
-    MyClothes clothes,
-  );
-
   Future<ResponseWrapper<String>> convertTshirts2UVmap(String imagePath);
 
   Future<ResponseWrapper<String>> exportMainColor(

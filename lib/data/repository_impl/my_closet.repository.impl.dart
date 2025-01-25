@@ -47,15 +47,6 @@ class MyClosetRepositoryImpl implements MyClosetRepository {
   }
 
   @override
-  Future<ResponseWrapper<List<MyClothes>>> modifyMyClothes(
-      String id, MyClothes clothes) async {
-    final response = await _myClosetDao.modifyMyClothes(id, clothes.toEntity());
-    return response.toModel<List<MyClothes>>(
-      response.data?.map((e) => e.toModel()).toList() ?? [],
-    );
-  }
-
-  @override
   Future<ResponseWrapper<String>> convertTshirts2UVmap(String imagePath) async {
     try {
       final image = File(imagePath);
