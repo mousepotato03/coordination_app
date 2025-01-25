@@ -24,13 +24,13 @@ abstract class ImageToUvMapApi {
   );
 
   @MultiPart()
-  @POST("/convert/tshirts/color")
+  @POST("/convert/pants/color")
   Future<MainColor> exportPantsColor(
     @Part(name: "file") File file,
   );
 
   @MultiPart()
-  @POST("/convert/tshirts/color")
+  @POST("/convert/shoes/color")
   Future<MainColor> exportShoesColor(
     @Part(name: "file") File file,
   );

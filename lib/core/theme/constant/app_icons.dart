@@ -5,5 +5,5 @@ class AppIcons {
   static const String avatar = '$baseIconPath/svg/avatar.svg';
   static const String closet = '$baseIconPath/svg/closet.svg';
   static const String profile = '$baseIconPath/svg/profile.svg';
-  static const String login = '$baseIconPath/svg/login.svg';
+  static const String lab = '$baseIconPath/svg/lab.svg';
 }

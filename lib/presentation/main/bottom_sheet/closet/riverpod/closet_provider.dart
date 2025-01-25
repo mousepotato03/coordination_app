@@ -58,10 +58,12 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
     state = state.copyWith(status: Status.loading);
 
     try {
-      final uvMapPath = await getClothesUV(imagePath);
-      final mainColor = await getMainColor(category, imagePath);
+      String? uvMapPath = "";
+      if (category == ClosetCategory.top) {
+        uvMapPath = await getClothesUV(imagePath);
+      }
 
-      infoDebugPrint("${uvMapPath}, ${mainColor}");
+      final mainColor = await getMainColor(category, imagePath);
 
       final newClothes = MyClothes(
         id: DateTime.now().millisecondsSinceEpoch.toString(),

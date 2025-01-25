@@ -108,8 +108,8 @@ class _ClothesDetailPageState extends ConsumerState<ClothesDetailPage> {
                 onPressed: () async {
                   CommonDialog.loadingDialog(
                     context,
-                    "이미지 처리 중입니다.",
-                    "다소 시간이 소요될 수 있습니다",
+                    "이미지 처리 중입니다",
+                    "시간이 다소 소요될 수 있습니다",
                   );
 
                   await ref.read(closetProvider.notifier).addMyClothes(

@@ -1,22 +1,23 @@
+import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/core/utils/constants.dart';
 import 'package:coordination_app/core/utils/dialog/common_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AvatarFab extends ConsumerStatefulWidget {
-  const AvatarFab({super.key});
+class ClothesXbtn extends ConsumerStatefulWidget {
+  const ClothesXbtn({super.key});
 
   @override
   ConsumerState createState() => _AvatarFabState();
 }
 
-class _AvatarFabState extends ConsumerState<AvatarFab> {
+class _AvatarFabState extends ConsumerState<ClothesXbtn> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.white,
+        color: AppColors.secondary,
         boxShadow: [
           const BoxShadow(
             color: Colors.black26,

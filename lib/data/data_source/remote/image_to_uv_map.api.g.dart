@@ -127,7 +127,7 @@ class _ImageToUvMapApi implements ImageToUvMapApi {
     )
         .compose(
           _dio.options,
-          '/convert/tshirts/color',
+          '/convert/pants/color',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -168,7 +168,7 @@ class _ImageToUvMapApi implements ImageToUvMapApi {
     )
         .compose(
           _dio.options,
-          '/convert/tshirts/color',
+          '/convert/shoes/color',
           queryParameters: queryParameters,
           data: _data,
         )
