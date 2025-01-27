@@ -1,12 +1,12 @@
 import 'package:coordination_app/core/extensions.dart';
+import 'package:coordination_app/domain/usecase/base/remote.usecase.dart';
 
 import '../../../core/utils/error/error_response.dart';
 import '../../../presentation/main/bottom_sheet/closet/closet_category.dart';
 import '../../model/common/result.dart';
 import '../../repository/my_closet.repository.dart';
-import '../base/local.usecase.dart';
 
-class GetClothesMainColorUsecase extends LocalUsecase<MyClosetRepository> {
+class GetClothesMainColorUsecase extends RemoteUsecase<MyClosetRepository> {
   final ClosetCategory imageCategory;
   final String imagePath;
 

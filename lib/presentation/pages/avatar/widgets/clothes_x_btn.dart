@@ -34,15 +34,16 @@ class _AvatarFabState extends ConsumerState<ClothesXbtn> {
         ],
       ),
       child: IconButton(
+        padding: const EdgeInsets.all(17.0),
         onPressed: () {
           CommonDialog.takeOffClothesDialog(context, ref);
         },
         icon: Image.asset(
           "$baseIconPath/png/trash.png",
-          scale: 12,
+          width: 30,
+          height: 30,
         ),
-        iconSize: 36,
-        splashRadius: 30,
+        iconSize: 80,
       ),
     );
   }

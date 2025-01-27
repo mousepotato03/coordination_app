@@ -82,8 +82,8 @@ class MainScreen extends ConsumerWidget {
   Widget _buildPage(int index) {
     switch (BottomNav.values[index]) {
       case BottomNav.lab:
-        // return const LoginPage();
         return const LabPage();
+      //return const LabPage();
       case BottomNav.profile:
         return const ProfilePage();
       case BottomNav.avatar:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 import 'data/entity/my_clothes/my_clothes.entity.dart';
 import 'data/entity/my_size/my_size_info.entity.dart';
@@ -14,6 +15,9 @@ void main() async {
   Hive.registerAdapter(MyClothesEntityAdapter());
   //의존성 주입
   configureDependencies();
+
+  //Kakao login
+  KakaoSdk.init(nativeAppKey: "d9e3f877b7a01513af74476da9685d93");
 
   runApp(const CoordinationApp());
 }
