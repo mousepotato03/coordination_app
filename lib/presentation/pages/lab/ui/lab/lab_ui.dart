@@ -21,7 +21,7 @@ class LabUI extends ConsumerWidget {
             height20,
             _buildMenuTile(
               context,
-              title: "친구에게 메시지 보내기",
+              title: "친구에게 공유하기",
               iconPath: "$baseImagePath/kakao_talk.png",
               children: [
                 const MessageCard(

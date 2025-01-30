@@ -5,9 +5,9 @@ import '../../../core/utils/exception/common_exception.dart';
 import '../../../core/utils/logger.dart';
 import '../../model/common/result.dart';
 import '../../repository/user.repository.dart';
-import '../base/remote.usecase.dart';
+import '../base/local.usecase.dart';
 
-class LoginWithTokenUsecase extends RemoteUsecase<UserRepository> {
+class LoginWithTokenUsecase extends LocalUsecase<UserRepository> {
   @override
   Future<Result<User>> call(UserRepository repository) async {
     // 토큰 유효성 확인 및 갱신

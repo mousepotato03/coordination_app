@@ -1,8 +1,10 @@
 import 'dart:ui';
 
+import 'package:coordination_app/presentation/main/riverpod/user_state_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MessageCard extends StatelessWidget {
+class MessageCard extends ConsumerWidget {
   final String imagePath;
   final double width;
   final double height;
@@ -15,7 +17,7 @@ class MessageCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(
@@ -46,7 +48,8 @@ class MessageCard extends StatelessWidget {
                 bottom: 10,
                 child: IconButton(
                   icon: const Icon(Icons.send),
-                  onPressed: () {},
+                  onPressed: () async =>
+                      ref.read(userStateProvider.notifier).sendKakaoMsg(),
                 ),
               ),
             ],

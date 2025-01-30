@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../repository/user.repository.dart';
-import '../base/remote.usecase.dart';
+import '../base/local.usecase.dart';
 
 @singleton
 class UserUsecase {
@@ -9,7 +9,7 @@ class UserUsecase {
 
   UserUsecase(this._userRepository);
 
-  Future<T> execute<T>({required RemoteUsecase usecase}) async {
+  Future<T> execute<T>({required LocalUsecase usecase}) async {
     return await usecase(_userRepository);
   }
 }

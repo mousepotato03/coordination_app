@@ -57,6 +57,8 @@ dependencies:
   retrofit:
   path_provider:
   kakao_flutter_sdk_user:
+  kakao_flutter_sdk_template: ^1.9.6
+  kakao_flutter_sdk_share: ^1.9.6
 
 dev_dependencies:
   flutter_test:

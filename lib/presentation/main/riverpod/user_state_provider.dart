@@ -1,3 +1,4 @@
+import 'package:coordination_app/domain/usecase/user/send_kakao_msg.usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
@@ -87,6 +88,24 @@ class UserNotifier extends StateNotifier<UserState> {
     try {
       await _userUsecase.execute(usecase: LogoutUsecase());
       state = state.copyWith(status: Status.initial, user: null);
+    } on ErrorResponse catch (error) {
+      state = state.copyWith(
+        status: Status.error,
+        error: error,
+      );
+    } catch (error) {
+      CustomLogger.logger.e(error);
+      state = state.copyWith(
+        status: Status.error,
+        error: CommonException.setError(error),
+      );
+    }
+  }
+
+  Future<void> sendKakaoMsg() async {
+    state = state.copyWith(status: Status.loading);
+    try {
+      await _userUsecase.execute(usecase: SendKakaoMsgUsecase());
     } on ErrorResponse catch (error) {
       state = state.copyWith(
         status: Status.error,

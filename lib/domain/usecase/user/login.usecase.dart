@@ -1,3 +1,4 @@
+import 'package:coordination_app/domain/usecase/base/local.usecase.dart';
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
@@ -6,9 +7,8 @@ import '../../../core/utils/exception/common_exception.dart';
 import '../../../core/utils/logger.dart';
 import '../../model/common/result.dart';
 import '../../repository/user.repository.dart';
-import '../base/remote.usecase.dart';
 
-class LoginUsecase extends RemoteUsecase<UserRepository> {
+class LoginUsecase extends LocalUsecase<UserRepository> {
   @override
   Future<Result<User>> call(UserRepository repository) async {
     if (await isKakaoTalkInstalled()) {
