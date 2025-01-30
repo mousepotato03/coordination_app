@@ -1,3 +1,4 @@
+import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,7 +19,10 @@ class LabPage extends StatelessWidget {
           case Status.initial:
             return const LogInUI();
           case Status.loading:
-            return const Center(child: CircularProgressIndicator());
+            return Container(
+              color: AppColors.loadingBackground,
+              child: const Center(child: CircularProgressIndicator()),
+            );
           case Status.success:
             return const LabUI();
           case Status.error:

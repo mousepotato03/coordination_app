@@ -1,75 +1,60 @@
-import 'package:coordination_app/core/theme/custom/custom_font_weight.dart';
+import 'package:coordination_app/core/theme/constant/app_colors.dart';
+import 'package:coordination_app/core/utils/constants.dart';
+import 'package:coordination_app/presentation/pages/lab/ui/lab/widgets/msg_card_widget.dart';
+import 'package:coordination_app/presentation/pages/lab/ui/lab/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../core/theme/constant/app_colors.dart';
-import '../../../../main/riverpod/user_state_provider.dart';
+import '../../../../../core/utils/widgets/width_height.dart';
 
 class LabUI extends ConsumerWidget {
   const LabUI({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.read(userStateProvider).user;
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 70, left: 32, right: 32),
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            ClipOval(
-              child: Image.network(
-                user?.kakaoAccount?.profile?.profileImageUrl ?? "",
-                width: 110,
-                height: 110,
-              ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Text(
-              user?.kakaoAccount?.profile?.nickname ?? '무명의 사용자',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(
-                    color: AppColors.black,
-                  )
-                  .regular,
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => ref.read(userStateProvider.notifier).logOut(),
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll<Color>(
-                    Theme.of(context).primaryColor,
-                  ),
-                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                    const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    ),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Text(
-                    '로그아웃',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(
-                          color: AppColors.white,
-                        )
-                        .regular,
-                  ),
-                ),
-              ),
+            const ProfileWidget(),
+            height20,
+            _buildMenuTile(
+              context,
+              title: "친구에게 메시지 보내기",
+              iconPath: "$baseImagePath/kakao_talk.png",
+              children: [
+                const MessageCard(
+                  imagePath: "$baseImagePath/pepe1.png",
+                  width: 600,
+                  height: 400,
+                )
+              ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildMenuTile(
+    BuildContext context, {
+    required String title,
+    required String iconPath,
+    required List<Widget> children,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey), // 테두리 추가
+        borderRadius: BorderRadius.circular(8),
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16), // 여백
+      child: ExpansionTile(
+        leading: Image.asset(iconPath, width: 40, height: 40),
+        title: Text(title, style: const TextStyle(fontSize: 16)),
+        children: children,
+        tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+        childrenPadding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       ),
     );
   }

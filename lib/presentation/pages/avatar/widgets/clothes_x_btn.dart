@@ -17,7 +17,7 @@ class _AvatarFabState extends ConsumerState<ClothesXbtn> {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.secondary,
+        color: AppColors.primary,
         boxShadow: [
           const BoxShadow(
             color: Colors.black26,

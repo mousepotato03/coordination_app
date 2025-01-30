@@ -1,10 +1,10 @@
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
-import 'package:coordination_app/core/utils/wigets/width_height.dart';
 import 'package:coordination_app/presentation/pages/profile/widget/note_pad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants.dart';
+import '../../../core/utils/widgets/width_height.dart';
 import '../avatar/riverpod/avatar_state_provider.dart';
 import 'note_paper_pages/note_paper_pages.dart';
 import 'riverpod/my_size_info_provider.dart';
@@ -31,6 +31,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final status = ref.watch(mySizeInfoProvider).status;
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: Center(
         child: switch (status) {
           Status.initial || Status.loading => const CircularProgressIndicator(),
