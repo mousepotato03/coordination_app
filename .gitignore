@@ -47,3 +47,5 @@ app.*.map.json
 
 # Ignore the unityLibrary folder inside the android directory
 android/unityLibrary/
+
+lib/core/secure_key.dart

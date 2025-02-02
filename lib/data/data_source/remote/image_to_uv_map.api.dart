@@ -1,12 +1,14 @@
 import 'dart:io';
 
-import 'package:coordination_app/data/dto/main_color.model.dart';
+import 'package:coordination_app/core/secure_key.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../dto/main_color.dto.dart';
+
 part 'image_to_uv_map.api.g.dart';
 
-@RestApi(baseUrl: "http://192.168.219.102:8000")
+@RestApi(baseUrl: localServerAddress)
 abstract class ImageToUvMapApi {
   factory ImageToUvMapApi(Dio dio) = _ImageToUvMapApi;
 

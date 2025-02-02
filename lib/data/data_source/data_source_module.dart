@@ -1,3 +1,4 @@
+import 'package:coordination_app/data/data_source/remote/gpt.api.dart';
 import 'package:coordination_app/data/data_source/remote/image_to_uv_map.api.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -17,7 +18,8 @@ abstract class DataSourceModule {
   MyClosetDao get myClosetDao => MyClosetDao();
 
   @singleton
-  ImageToUvMapApi get imageToUvMapApi {
-    return ImageToUvMapApi(_dio);
-  }
+  ImageToUvMapApi get imageToUvMapApi => ImageToUvMapApi(_dio);
+
+  @singleton
+  GptApi get gptApi => GptApi(_dio);
 }

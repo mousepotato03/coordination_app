@@ -1,5 +1,6 @@
 import 'package:coordination_app/core/extensions.dart';
 import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state_provider.dart';
+import 'package:coordination_app/presentation/pages/avatar/widgets/evaluating_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
@@ -33,6 +34,8 @@ class _AvatarPageState extends ConsumerState<AvatarPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              EvaluatingBtn(),
+              SizedBox(height: 10),
               ClothesXbtn(),
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:coordination_app/core/secure_key.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -17,7 +18,7 @@ void main() async {
   configureDependencies();
 
   //Kakao login
-  KakaoSdk.init(nativeAppKey: "d9e3f877b7a01513af74476da9685d93");
+  KakaoSdk.init(nativeAppKey: kakaoNativeAppKey);
 
   runApp(const CoordinationApp());
 }

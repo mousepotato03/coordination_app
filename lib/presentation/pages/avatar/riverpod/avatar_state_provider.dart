@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 import 'package:coordination_app/domain/usecase/avatar/avatar.usecase.dart';
 import 'package:coordination_app/domain/usecase/avatar/get_body_info.usecase.dart';
@@ -13,6 +12,8 @@ import '../../../../core/constants.dart';
 import '../../../../core/utils/exception/common_exception.dart';
 import '../../../../core/utils/logger.dart';
 import '../../../../dependency_injection.dart';
+import '../../../../domain/usecase/my_outfit/evaluating_outfit.usecase.dart';
+import '../../../../domain/usecase/my_outfit/my_outfit.usecase.dart';
 
 final avatarStateProvider = StateNotifierProvider<AvatarNotifier, AvatarState>(
     (ref) => getIt<AvatarNotifier>());
@@ -20,8 +21,10 @@ final avatarStateProvider = StateNotifierProvider<AvatarNotifier, AvatarState>(
 @injectable
 class AvatarNotifier extends StateNotifier<AvatarState> {
   final AvatarUsecase _avatarUsecase;
+  final MyOutfitUsecase _myOutfitUsecase;
 
-  AvatarNotifier(this._avatarUsecase) : super(const AvatarState());
+  AvatarNotifier(this._avatarUsecase, this._myOutfitUsecase)
+      : super(const AvatarState());
 
   Future<void> getBodyInfo() async {
     try {
@@ -59,6 +62,7 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
             clothesInfo: data.toString(),
             needsRefresh: true,
           );
+          //updateCurrentWearing(myClothes);
         },
         failure: (error) => state = state.copyWith(
           status: Status.error,
@@ -76,7 +80,6 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
 
   void clearClothes() {
     if (state.clothesInfo.isEmpty) {
-      errorDebugPrint("지울거 없음");
       state = state.copyWith(status: Status.error);
       return;
     }
@@ -86,7 +89,6 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
       'pants': {'uv': 'delete', 'main_color': ''},
       'shoes': {'uv': 'delete', 'main_color': ''},
     };
-    errorDebugPrint("옷 벗김 ㅇㅇ;");
     state = state.copyWith(
       status: Status.success,
       clothesInfo: jsonEncode(clothingData).toString(),
@@ -96,5 +98,31 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
 
   void resetRefreshState() {
     state = state.copyWith(needsRefresh: false);
+  }
+
+  Future<void> evaluatingOutfit() async {
+    try {
+      state = state.copyWith(status: Status.loading);
+
+      final response =
+          await _myOutfitUsecase.execute(usecase: EvaluatingOutfit(""));
+      response.when(
+        success: (data) {
+          state = state.copyWith(
+            status: Status.success,
+          );
+        },
+        failure: (error) => state = state.copyWith(
+          status: Status.error,
+          error: error,
+        ),
+      );
+    } catch (e) {
+      CustomLogger.logger.e(e);
+      state = state.copyWith(
+        status: Status.error,
+        error: CommonException.setError(e),
+      );
+    }
   }
 }
