@@ -1,6 +1,6 @@
-import 'package:coordination_app/domain/repository/my_outfit.repository.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../repository/my_outfit.repository.dart';
 import '../base/usecase.dart';
 
 @singleton

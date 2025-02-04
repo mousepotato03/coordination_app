@@ -1,11 +1,11 @@
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/core/utils/constants.dart';
-import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/dialog/common_dialog.dart';
+import '../riverpod/avatar_state_provider.dart';
 
 class EvaluatingBtn extends ConsumerStatefulWidget {
   const EvaluatingBtn({super.key});

@@ -1,35 +1,37 @@
+import 'dart:io';
+
 import 'package:coordination_app/core/extensions.dart';
+import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
+import 'package:coordination_app/domain/repository/my_outfit.repository.dart';
+import 'package:coordination_app/domain/usecase/base/remote.usecase.dart';
 
 import '../../../core/utils/error/error_response.dart';
 import '../../model/common/result.dart';
-import '../../repository/my_outfit.repository.dart';
-import '../base/remote.usecase.dart';
 
-class EvaluatingOutfit extends RemoteUsecase<MyOutfitRepository> {
-  final String imageUrls;
+class EvaluatingOutfitUsecase extends RemoteUsecase<MyOutfitRepository> {
+  final List<String> clothes;
 
-  EvaluatingOutfit(this.imageUrls);
+  EvaluatingOutfitUsecase(this.clothes);
 
   @override
   Future call(MyOutfitRepository repository) async {
-    ///ChatGPT API에 이미지를 업로드 할 때, multipart form data를 사용하여
-    ///바이너리 데이터를 넘겨주려고 하면 제한이 있어서 불가능 하다고 함.
-    ///todo: ChatGPT API 사용을 외부 서버로 분리하고, 서버로 이미지를 보내면 url로 만들어서 처리하는게 좋을듯.
-    final nonNullImageUrls = [
-      "https://i.ibb.co/tpFvhk4d/Kakao-Talk-20250201-173017846.jpg",
-      "https://i.ibb.co/LwsjfnM/Kakao-Talk-20250201-175505093.jpg",
-      "https://i.ibb.co/FkLz6dvG/Kakao-Talk-20250201-173722626.jpg",
-    ];
+    final imageFiles = clothes.map((imagePath) => File(imagePath)).toList();
 
-    final result = await repository.evaluatingOutfits(nonNullImageUrls);
+    final imageUploadRes = await Future.wait(
+      imageFiles.map((file) => repository.uploadFile(file)),
+    );
 
-    return result.status.isSuccess
-        ? Result.success(result.data)
+    infoDebugPrint(imageUploadRes.toString());
+
+    final evaluatingRes = await repository.evaluatingOutfit(imageUploadRes);
+
+    return evaluatingRes.status.isSuccess
+        ? Result.success(evaluatingRes.data)
         : Result.failure(
             ErrorResponse(
-              status: result.status,
-              code: result.code,
-              message: result.message,
+              status: evaluatingRes.status,
+              code: evaluatingRes.code,
+              message: evaluatingRes.message,
             ),
           );
   }

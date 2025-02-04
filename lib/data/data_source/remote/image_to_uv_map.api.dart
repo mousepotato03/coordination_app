@@ -4,7 +4,7 @@ import 'package:coordination_app/core/secure_key.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../dto/main_color.dto.dart';
+import '../../dto/image_to_uv_map/main_color.dto.dart';
 
 part 'image_to_uv_map.api.g.dart';
 

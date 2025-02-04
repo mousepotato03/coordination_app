@@ -14,9 +14,10 @@ import 'package:coordination_app/data/data_source/local/my_closet.dao.dart'
     as _i1010;
 import 'package:coordination_app/data/data_source/local/my_size_info.dao.dart'
     as _i899;
-import 'package:coordination_app/data/data_source/remote/gpt.api.dart' as _i862;
 import 'package:coordination_app/data/data_source/remote/image_to_uv_map.api.dart'
     as _i742;
+import 'package:coordination_app/data/data_source/remote/openai.api.dart'
+    as _i7;
 import 'package:coordination_app/data/repository_impl/avatar.repository.impl.dart'
     as _i295;
 import 'package:coordination_app/data/repository_impl/my_closet.repository.impl.dart'
@@ -73,7 +74,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i899.MySizeDao>(() => dataSourceModule.mySizeDao);
     gh.singleton<_i1010.MyClosetDao>(() => dataSourceModule.myClosetDao);
     gh.singleton<_i742.ImageToUvMapApi>(() => dataSourceModule.imageToUvMapApi);
-    gh.singleton<_i862.GptApi>(() => dataSourceModule.gptApi);
+    gh.singleton<_i7.OpenAiApi>(() => dataSourceModule.openAiApi);
     gh.singleton<_i441.AvatarRepository>(() => _i295.AvatarRepositoryImpl(
           gh<_i899.MySizeDao>(),
           gh<_i1010.MyClosetDao>(),
@@ -88,7 +89,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i857.AvatarUsecase>(
         () => _i857.AvatarUsecase(gh<_i441.AvatarRepository>()));
     gh.singleton<_i675.MyOutfitRepository>(
-        () => _i825.MyOutfitRepositoryImpl(gh<_i862.GptApi>()));
+        () => _i825.MyOutfitRepositoryImpl(gh<_i7.OpenAiApi>()));
     gh.singleton<_i784.UserUsecase>(
         () => _i784.UserUsecase(gh<_i160.UserRepository>()));
     gh.factory<_i890.UserNotifier>(

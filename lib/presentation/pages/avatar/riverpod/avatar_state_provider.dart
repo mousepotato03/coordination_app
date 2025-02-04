@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 import 'package:coordination_app/domain/usecase/avatar/avatar.usecase.dart';
 import 'package:coordination_app/domain/usecase/avatar/get_body_info.usecase.dart';
 import 'package:coordination_app/domain/usecase/avatar/get_clothes_info.usecase.dart';
+import 'package:coordination_app/domain/usecase/my_outfit/evaluating_outfit.usecase.dart';
 import 'package:coordination_app/presentation/pages/avatar/riverpod/avatar_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injectable/injectable.dart';
@@ -12,8 +14,8 @@ import '../../../../core/constants.dart';
 import '../../../../core/utils/exception/common_exception.dart';
 import '../../../../core/utils/logger.dart';
 import '../../../../dependency_injection.dart';
-import '../../../../domain/usecase/my_outfit/evaluating_outfit.usecase.dart';
 import '../../../../domain/usecase/my_outfit/my_outfit.usecase.dart';
+import '../../../main/bottom_sheet/closet/closet_category.dart';
 
 final avatarStateProvider = StateNotifierProvider<AvatarNotifier, AvatarState>(
     (ref) => getIt<AvatarNotifier>());
@@ -62,7 +64,7 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
             clothesInfo: data.toString(),
             needsRefresh: true,
           );
-          //updateCurrentWearing(myClothes);
+          updateCurrentWearing(myClothes);
         },
         failure: (error) => state = state.copyWith(
           status: Status.error,
@@ -93,6 +95,7 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
       status: Status.success,
       clothesInfo: jsonEncode(clothingData).toString(),
       needsRefresh: true,
+      currentWearing: {},
     );
   }
 
@@ -100,17 +103,40 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
     state = state.copyWith(needsRefresh: false);
   }
 
+  void updateCurrentWearing(MyClothes myClothes) {
+    final category = myClothes.category;
+    final updatedWearing =
+        Map<ClosetCategory, MyClothes>.from(state.currentWearing);
+    updatedWearing[category] = myClothes;
+
+    state = state.copyWith(currentWearing: updatedWearing);
+  }
+
   Future<void> evaluatingOutfit() async {
     try {
       state = state.copyWith(status: Status.loading);
+      infoDebugPrint("Evaluation start");
 
-      final response =
-          await _myOutfitUsecase.execute(usecase: EvaluatingOutfit(""));
+      //이미지 3개 이하면 의상 한 세트가 아니니까 종료함
+      if (state.currentWearing.length < 3) {
+        state = state.copyWith(status: Status.error);
+        return;
+      }
+
+      final List<String> images = state.currentWearing.entries
+          .map((entry) => entry.value.imagePath)
+          .toList();
+
+      final response = await _myOutfitUsecase.execute(
+          usecase: EvaluatingOutfitUsecase(images));
+
       response.when(
         success: (data) {
           state = state.copyWith(
             status: Status.success,
+            evaluation: data,
           );
+          infoDebugPrint(data);
         },
         failure: (error) => state = state.copyWith(
           status: Status.error,
