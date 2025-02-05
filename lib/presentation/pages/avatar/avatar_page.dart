@@ -4,6 +4,7 @@ import 'package:coordination_app/presentation/pages/avatar/widgets/evaluating_bt
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
+import 'package:scanning_effect/scanning_effect.dart';
 
 import 'widgets/clothes_x_btn.dart';
 
@@ -21,6 +22,8 @@ class _AvatarPageState extends ConsumerState<AvatarPage> {
   Widget build(BuildContext context) {
     _addAvatarRefreshListener();
 
+    final isScanning = ref.watch(avatarStateProvider).isScanning;
+
     return Stack(
       alignment: Alignment.centerRight,
       children: [
@@ -29,6 +32,17 @@ class _AvatarPageState extends ConsumerState<AvatarPage> {
           printSetupLog: false,
           runImmediately: true,
         ),
+        if (isScanning)
+          const ScanningEffect(
+            enableBorder: false,
+            scanningHeightOffset: 0.2,
+            delay: Duration(milliseconds: 300),
+            scanningLinePadding: EdgeInsets.zero,
+            child: SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
         const Positioned(
           right: 10,
           child: Column(

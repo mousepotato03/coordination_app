@@ -22,6 +22,7 @@ mixin _$AvatarState {
   Map<ClosetCategory, MyClothes> get currentWearing =>
       throw _privateConstructorUsedError;
   String get evaluation => throw _privateConstructorUsedError;
+  bool get isScanning => throw _privateConstructorUsedError;
   bool get needsRefresh => throw _privateConstructorUsedError;
   ErrorResponse get error => throw _privateConstructorUsedError;
 
@@ -42,6 +43,7 @@ abstract class $AvatarStateCopyWith<$Res> {
       String clothesInfo,
       Map<ClosetCategory, MyClothes> currentWearing,
       String evaluation,
+      bool isScanning,
       bool needsRefresh,
       ErrorResponse error});
 }
@@ -64,6 +66,7 @@ class _$AvatarStateCopyWithImpl<$Res, $Val extends AvatarState>
     Object? clothesInfo = null,
     Object? currentWearing = null,
     Object? evaluation = null,
+    Object? isScanning = null,
     Object? needsRefresh = null,
     Object? error = null,
   }) {
@@ -88,6 +91,10 @@ class _$AvatarStateCopyWithImpl<$Res, $Val extends AvatarState>
           ? _value.evaluation
           : evaluation // ignore: cast_nullable_to_non_nullable
               as String,
+      isScanning: null == isScanning
+          ? _value.isScanning
+          : isScanning // ignore: cast_nullable_to_non_nullable
+              as bool,
       needsRefresh: null == needsRefresh
           ? _value.needsRefresh
           : needsRefresh // ignore: cast_nullable_to_non_nullable
@@ -114,6 +121,7 @@ abstract class _$$AvatarStateImplCopyWith<$Res>
       String clothesInfo,
       Map<ClosetCategory, MyClothes> currentWearing,
       String evaluation,
+      bool isScanning,
       bool needsRefresh,
       ErrorResponse error});
 }
@@ -134,6 +142,7 @@ class __$$AvatarStateImplCopyWithImpl<$Res>
     Object? clothesInfo = null,
     Object? currentWearing = null,
     Object? evaluation = null,
+    Object? isScanning = null,
     Object? needsRefresh = null,
     Object? error = null,
   }) {
@@ -158,6 +167,10 @@ class __$$AvatarStateImplCopyWithImpl<$Res>
           ? _value.evaluation
           : evaluation // ignore: cast_nullable_to_non_nullable
               as String,
+      isScanning: null == isScanning
+          ? _value.isScanning
+          : isScanning // ignore: cast_nullable_to_non_nullable
+              as bool,
       needsRefresh: null == needsRefresh
           ? _value.needsRefresh
           : needsRefresh // ignore: cast_nullable_to_non_nullable
@@ -179,6 +192,7 @@ class _$AvatarStateImpl implements _AvatarState {
       this.clothesInfo = "",
       final Map<ClosetCategory, MyClothes> currentWearing = const {},
       this.evaluation = "",
+      this.isScanning = false,
       this.needsRefresh = false,
       this.error = const ErrorResponse()})
       : _currentWearing = currentWearing;
@@ -206,6 +220,9 @@ class _$AvatarStateImpl implements _AvatarState {
   final String evaluation;
   @override
   @JsonKey()
+  final bool isScanning;
+  @override
+  @JsonKey()
   final bool needsRefresh;
   @override
   @JsonKey()
@@ -213,7 +230,7 @@ class _$AvatarStateImpl implements _AvatarState {
 
   @override
   String toString() {
-    return 'AvatarState(status: $status, bodyInfo: $bodyInfo, clothesInfo: $clothesInfo, currentWearing: $currentWearing, evaluation: $evaluation, needsRefresh: $needsRefresh, error: $error)';
+    return 'AvatarState(status: $status, bodyInfo: $bodyInfo, clothesInfo: $clothesInfo, currentWearing: $currentWearing, evaluation: $evaluation, isScanning: $isScanning, needsRefresh: $needsRefresh, error: $error)';
   }
 
   @override
@@ -230,6 +247,8 @@ class _$AvatarStateImpl implements _AvatarState {
                 .equals(other._currentWearing, _currentWearing) &&
             (identical(other.evaluation, evaluation) ||
                 other.evaluation == evaluation) &&
+            (identical(other.isScanning, isScanning) ||
+                other.isScanning == isScanning) &&
             (identical(other.needsRefresh, needsRefresh) ||
                 other.needsRefresh == needsRefresh) &&
             (identical(other.error, error) || other.error == error));
@@ -243,6 +262,7 @@ class _$AvatarStateImpl implements _AvatarState {
       clothesInfo,
       const DeepCollectionEquality().hash(_currentWearing),
       evaluation,
+      isScanning,
       needsRefresh,
       error);
 
@@ -260,6 +280,7 @@ abstract class _AvatarState implements AvatarState {
       final String clothesInfo,
       final Map<ClosetCategory, MyClothes> currentWearing,
       final String evaluation,
+      final bool isScanning,
       final bool needsRefresh,
       final ErrorResponse error}) = _$AvatarStateImpl;
 
@@ -273,6 +294,8 @@ abstract class _AvatarState implements AvatarState {
   Map<ClosetCategory, MyClothes> get currentWearing;
   @override
   String get evaluation;
+  @override
+  bool get isScanning;
   @override
   bool get needsRefresh;
   @override

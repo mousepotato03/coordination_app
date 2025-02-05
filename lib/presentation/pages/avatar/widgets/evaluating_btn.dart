@@ -1,3 +1,4 @@
+import 'package:coordination_app/core/constants.dart';
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
 import 'package:coordination_app/core/utils/constants.dart';
 import 'package:coordination_app/presentation/pages/avatar/widgets/evaluation_dialog.dart';
@@ -50,7 +51,8 @@ class _AvatarFabState extends ConsumerState<EvaluatingBtn> {
             padding: const EdgeInsets.all(17.0),
             onPressed: () async {
               await ref.read(avatarStateProvider.notifier).evaluatingOutfit();
-              if (context.mounted) {
+              if (context.mounted &&
+                  ref.read(avatarStateProvider).status == Status.success) {
                 showEvaluationDialog(context, ref);
               }
             },

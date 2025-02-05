@@ -113,13 +113,13 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
 
   Future<void> evaluatingOutfit() async {
     try {
-      state = state.copyWith(status: Status.loading);
-
       //이미지 3개 이하면 의상 한 세트가 아니니까 종료함
       if (state.currentWearing.length < 3) {
         state = state.copyWith(status: Status.error);
         return;
       }
+
+      state = state.copyWith(status: Status.loading, isScanning: true);
 
       final List<String> images = state.currentWearing.entries
           .map((entry) => entry.value.imagePath)
@@ -133,10 +133,12 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
           state = state.copyWith(
             status: Status.success,
             evaluation: data,
+            isScanning: false,
           );
         },
         failure: (error) => state = state.copyWith(
           status: Status.error,
+          isScanning: false,
           error: error,
         ),
       );
@@ -144,8 +146,13 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
       CustomLogger.logger.e(e);
       state = state.copyWith(
         status: Status.error,
+        isScanning: false,
         error: CommonException.setError(e),
       );
     }
+  }
+
+  void resetScanningState() {
+    state = state.copyWith(isScanning: false);
   }
 }

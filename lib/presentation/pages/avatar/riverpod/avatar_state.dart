@@ -15,6 +15,7 @@ class AvatarState with _$AvatarState {
     @Default("") String clothesInfo,
     @Default({}) Map<ClosetCategory, MyClothes> currentWearing,
     @Default("") String evaluation,
+    @Default(false) bool isScanning,
     @Default(false) bool needsRefresh,
     @Default(ErrorResponse()) ErrorResponse error,
   }) = _AvatarState;

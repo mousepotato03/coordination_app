@@ -60,6 +60,7 @@ dependencies:
   kakao_flutter_sdk_template: ^1.9.6
   kakao_flutter_sdk_share: ^1.9.6
   flutter_markdown: ^0.7.6+1
+  scanning_effect: ^1.0.5
 
 dev_dependencies:
   flutter_test:

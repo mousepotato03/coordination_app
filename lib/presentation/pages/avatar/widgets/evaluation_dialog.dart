@@ -11,9 +11,9 @@ void showEvaluationDialog(BuildContext context, WidgetRef ref) async {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("평가 결과"),
+        title: const Text("평가 결과"),
         content: SizedBox(
-          width: double.maxFinite, // 다이얼로그 크기 조정
+          width: double.maxFinite,
           child: Column(
             mainAxisSize: MainAxisSize.min, // 내용에 맞춰 크기 조절
             children: [
@@ -28,9 +28,10 @@ void showEvaluationDialog(BuildContext context, WidgetRef ref) async {
         actions: <Widget>[
           TextButton(
             onPressed: () {
+              ref.read(avatarStateProvider.notifier).resetScanningState();
               context.pop();
             },
-            child: Text("확인"),
+            child: const Text("확인"),
           ),
         ],
       );
