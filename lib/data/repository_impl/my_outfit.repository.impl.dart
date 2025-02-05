@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:coordination_app/core/secure_key.dart';
-import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/data/response_wrapper/response_wrapper.dart';
 import 'package:coordination_app/domain/repository/my_outfit.repository.dart';
 import 'package:injectable/injectable.dart';
@@ -46,12 +45,7 @@ class MyOutfitRepositoryImpl extends MyOutfitRepository {
         "assistants=v2",
       );
       threadId = threadResponse.id;
-    } catch (e) {
-      CustomLogger.logger.e("스레드 생성 실패: $e");
-      return ResponseWrapper(status: "ERROR", data: "스레드 생성 실패: $e");
-    }
 
-    try {
       final messageRequest = MessageRequest(
         role: "user",
         content: "착용한 옷(사진 첨부된 거임)의 코디를 평가해줘.",
@@ -72,12 +66,7 @@ class MyOutfitRepositoryImpl extends MyOutfitRepository {
         threadId,
         messageRequest,
       );
-    } catch (e) {
-      CustomLogger.logger.e("메시지 전송 실패: $e");
-      return ResponseWrapper(status: "ERROR", data: "메시지 전송 실패: $e");
-    }
 
-    try {
       final runResponse = await _openAiApi.createRun(
         "Bearer $gptKey",
         "application/json",
@@ -86,14 +75,8 @@ class MyOutfitRepositoryImpl extends MyOutfitRepository {
         const RunRequest(assistant_id: gptAssistantsKey),
       );
       runId = runResponse.id;
-    } catch (e) {
-      CustomLogger.logger.e("런 생성 실패: $e");
-      return ResponseWrapper(status: "ERROR", data: "런 생성 실패: $e");
-    }
 
-    try {
       while (true) {
-        infoDebugPrint("Checking runStatus");
         final runStatus = await _openAiApi.checkRunStatus(
           "Bearer $gptKey",
           "application/json",
@@ -103,18 +86,12 @@ class MyOutfitRepositoryImpl extends MyOutfitRepository {
         );
 
         if (runStatus.status == "completed") {
-          infoDebugPrint("run completed ");
           break;
         }
 
         await Future.delayed(const Duration(seconds: 2));
       }
-    } catch (e) {
-      CustomLogger.logger.e("런 상태 확인 실패: $e");
-      return ResponseWrapper(status: "ERROR", data: "런 상태 확인 실패: $e");
-    }
 
-    try {
       final messages = await _openAiApi.getMessages(
         "Bearer $gptKey",
         "application/json",
@@ -127,8 +104,8 @@ class MyOutfitRepositoryImpl extends MyOutfitRepository {
         data: messages.messages.first.text,
       );
     } catch (e) {
-      CustomLogger.logger.e("메시지 조회 실패: $e");
-      return ResponseWrapper(status: "ERROR", data: "메시지 조회 실패: $e");
+      CustomLogger.logger.e("답변 생성 실패: $e");
+      return ResponseWrapper(status: "ERROR", data: "답변 생성 실패:$e");
     }
   }
 }

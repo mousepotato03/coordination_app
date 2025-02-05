@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/domain/model/my_clothes/my_clothes.model.dart';
 import 'package:coordination_app/domain/usecase/avatar/avatar.usecase.dart';
 import 'package:coordination_app/domain/usecase/avatar/get_body_info.usecase.dart';
@@ -115,7 +114,6 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
   Future<void> evaluatingOutfit() async {
     try {
       state = state.copyWith(status: Status.loading);
-      infoDebugPrint("Evaluation start");
 
       //이미지 3개 이하면 의상 한 세트가 아니니까 종료함
       if (state.currentWearing.length < 3) {
@@ -136,7 +134,6 @@ class AvatarNotifier extends StateNotifier<AvatarState> {
             status: Status.success,
             evaluation: data,
           );
-          infoDebugPrint(data);
         },
         failure: (error) => state = state.copyWith(
           status: Status.error,

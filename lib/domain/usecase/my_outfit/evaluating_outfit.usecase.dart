@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:coordination_app/core/extensions.dart';
-import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/domain/repository/my_outfit.repository.dart';
 import 'package:coordination_app/domain/usecase/base/remote.usecase.dart';
 
@@ -20,8 +19,6 @@ class EvaluatingOutfitUsecase extends RemoteUsecase<MyOutfitRepository> {
     final imageUploadRes = await Future.wait(
       imageFiles.map((file) => repository.uploadFile(file)),
     );
-
-    infoDebugPrint(imageUploadRes.toString());
 
     final evaluatingRes = await repository.evaluatingOutfit(imageUploadRes);
 

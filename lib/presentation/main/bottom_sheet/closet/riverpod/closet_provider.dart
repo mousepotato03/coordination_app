@@ -1,4 +1,3 @@
-import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 import 'package:coordination_app/domain/usecase/my_closet/get_clothes_main_color.usecase.dart';
 import 'package:coordination_app/domain/usecase/my_closet/get_uv_map.usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -152,7 +151,6 @@ class ClosetNotifier extends StateNotifier<ClosetState> {
           await _myClosetUsecase.execute(usecase: GetUVmapUsecase(imagePath));
       return response.when(
         success: (data) {
-          infoDebugPrint("${data}");
           return data;
         },
         failure: (error) {

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:coordination_app/core/extensions.dart';
-import 'package:coordination_app/core/utils/dev_func/custom_debug_print.dart';
 
 import '../../../core/utils/error/error_response.dart';
 import '../../../presentation/main/bottom_sheet/closet/closet_category.dart';
@@ -35,8 +34,6 @@ class GetClothesInfoUsecase extends LocalUsecase<AvatarRepository> {
       'pants': {'uv': 'keep', 'main_color': ''},
       'shoes': {'uv': 'keep', 'main_color': ''},
     };
-
-    infoDebugPrint("${myClothes}");
 
     switch (myClothes.category) {
       case ClosetCategory.top:
