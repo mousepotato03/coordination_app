@@ -1,34 +1,37 @@
 import 'package:flutter/material.dart';
 
-class NotePaper extends StatelessWidget {
-  final Widget child;
+import '../utils/constants.dart';
+import '../utils/notepad_styles.dart';
+
+
+class NotePaper extends StatelessWidget with NotepadStylesMixin {
+  final String title;
+  final Widget content;
 
   const NotePaper({
     super.key,
-    required this.child,
+    required this.title,
+    required this.content,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350,
-      height: 500,
-      decoration: BoxDecoration(
+      width: NotepadConstants.pageWidth,
+      height: NotepadConstants.pageHeight,
+      decoration: commonBoxDecoration.copyWith(
         color: Colors.amber.shade100,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            offset: const Offset(10, 8),
-            blurRadius: 4,
-          ),
-        ],
       ),
       child: CustomPaint(
         painter: LinedPaperPainter(),
         child: Container(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 40, bottom: 8),
-          child: child,
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 40,
+            bottom: 8,
+          ),
+          child: content,
         ),
       ),
     );
@@ -49,4 +52,4 @@ class LinedPaperPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-} 
+}

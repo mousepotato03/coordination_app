@@ -1,12 +1,12 @@
 import 'package:coordination_app/core/theme/constant/app_colors.dart';
-import 'package:coordination_app/presentation/pages/profile/widget/note_pad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/utils/widgets/width_height.dart';
 import '../avatar/riverpod/avatar_state_provider.dart';
-import 'note_paper_pages/note_paper_pages.dart';
+import 'note_pad/notepad.dart';
+import 'note_paper_pages/note_paper_content.dart';
 import 'riverpod/my_size_info_provider.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
@@ -45,14 +45,34 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const NotePadWidget(
-                      children: [
-                        BaseInfoPage(),
-                        UpperBodyInfoPage(),
-                        LowerBodyInfoPage(),
-                        ShoesInfoPage(),
+                      papers: [
+                        NotePaper(
+                          title: "기본 정보",
+                          content: BaseInfo(),
+                        ),
+                        NotePaper(
+                          title: "상의 정보",
+                          content: UpperBodyInfo(),
+                        ),
+                        NotePaper(
+                          title: "하의 정보",
+                          content: LowerBodyInfo(),
+                        ),
+                        NotePaper(
+                          title: "신발 정보",
+                          content: ShoesInfo(),
+                        ),
                       ],
                     ),
-                    height30,
+                    height10,
+                    const Text(
+                      "사이즈코리아의 데이터를 기반으로 작성됐습니다.",
+                      style: TextStyle(
+                        color: AppColors.unimportant,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                    height10,
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,

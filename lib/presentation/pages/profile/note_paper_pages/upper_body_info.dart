@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../riverpod/my_size_info_provider.dart';
 
-class UpperBodyInfoPage extends ConsumerWidget {
-  const UpperBodyInfoPage({super.key});
+class UpperBodyInfo extends ConsumerWidget {
+  const UpperBodyInfo({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

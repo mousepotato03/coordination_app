@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../riverpod/my_size_info_provider.dart';
 import '../widget/custom_text_field.dart';
 
-class LowerBodyInfoPage extends ConsumerWidget {
-  const LowerBodyInfoPage({super.key});
+class LowerBodyInfo extends ConsumerWidget {
+  const LowerBodyInfo({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../riverpod/my_size_info_provider.dart';
 
-class ShoesInfoPage extends ConsumerWidget {
-  const ShoesInfoPage({super.key});
+class ShoesInfo extends ConsumerWidget {
+  const ShoesInfo({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
