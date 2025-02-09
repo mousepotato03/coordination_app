@@ -24,11 +24,11 @@
 
 사용자의 신체 정보를 ProfilePage에서 저장하고, 이를 기반으로 아바타를 생성하여 보여줍니다.
 
-![아바타 예시](https://github.com/user-attachments/assets/bdea653f-766f-4960-bb24-8ee8fdb3d3c6)
+https://github.com/user-attachments/assets/bdea653f-766f-4960-bb24-8ee8fdb3d3c6
 
 BMI 계산을 통해 체형을 조정할 수 있으며, 체중 설정도 가능합니다.
 
-![체형 조정](https://github.com/user-attachments/assets/8f64f898-21b7-4c6b-9bb2-65bd09992523)
+https://github.com/user-attachments/assets/8f64f898-21b7-4c6b-9bb2-65bd09992523
 
 ### 2. 옷 입히기
 
@@ -36,13 +36,13 @@ BMI 계산을 통해 체형을 조정할 수 있으며, 체중 설정도 가능�
 
 옷장에 옷을 추가하려면 **이미지 변환 서버**가 실행 중이어야 합니다.
 
-![옷 추가 예시](https://github.com/user-attachments/assets/b27d6c02-28c2-4f3e-8837-a9b985119906)
+https://github.com/user-attachments/assets/b27d6c02-28c2-4f3e-8837-a9b985119906
 
 ### 3. 스타일 평가하기
 
 현재 OpenAI Assistants API를 활용하여 파인 튜닝된 모델이 스타일을 평가합니다.
 
-![스타일 평가](https://github.com/user-attachments/assets/fefcc098-9cd6-4c0e-be36-685b74483b05)
+https://github.com/user-attachments/assets/fefcc098-9cd6-4c0e-be36-685b74483b05
 
 ### 4. 실험실 (Experimental Features)
 
