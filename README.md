@@ -53,4 +53,8 @@ https://github.com/user-attachments/assets/fefcc098-9cd6-4c0e-be36-685b74483b05
 #### 현재 실험 중인 기능
 - **카카오 로그인 (자동 로그인 포함)**
 - **메시지 보내기 (사진 전송 가능)**
+- **메모장 위젯 애니메이션**
+  
+https://github.com/user-attachments/assets/1f9d979d-cd8b-4de1-bedc-29f3936fbb91
+
 
