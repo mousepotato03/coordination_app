@@ -40,7 +40,7 @@ https://github.com/user-attachments/assets/b27d6c02-28c2-4f3e-8837-a9b985119906
 
 ### 3. 스타일 평가하기
 
-현재 OpenAI Assistants API를 활용하여 파인 튜닝된 모델이 스타일을 평가합니다.
+OpenAI Assistants API를 활용하여 파인 튜닝된 모델이 스타일을 평가합니다.
 
 https://github.com/user-attachments/assets/fefcc098-9cd6-4c0e-be36-685b74483b05
 
